@@ -5,13 +5,13 @@ $database = new database();
 
 if(isset($_SESSION['is_login']))
 {
-    header('location:home.php');
+    header('location:index.php');
 }
 
 if(isset($_COOKIE['email']))
 {
   $database->relogin($_COOKIE['email']);
-  header('location:home.php');
+  header('location:index.php');
 }
 
 if(isset($_POST['login']))
@@ -29,7 +29,7 @@ if(isset($_POST['login']))
 
     if($database->login($email,$password,$remember))
     {
-      header('location:home.php');
+      header('location:index.php');
     }
 }
 ?>

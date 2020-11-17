@@ -1,530 +1,410 @@
+<?php
+include_once('db_connect.php');
+$database = new database();
+    session_start();
+	if(!isset($_SESSION['is_login']))
+    {
+      header('location:page-login.php');
+    }
+
+    $foods = $database->getFood();
+    $food_total = mysqli_num_rows($foods);
+
+    $food_category = $database->getFoodCategory();
+    $food_category_total = mysqli_num_rows($food_category);
+
+    $transactions = $database->getTransactions();
+    $transaction_total = mysqli_num_rows($transactions);
+
+    $users = $database->getUser();
+    $user_total = mysqli_num_rows($users);
+?>
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
-        <meta name="author" content="Coderthemes">
 
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+    <meta name="author" content="Coderthemes">
 
-        <title>Admin - Food Market</title>
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-        <!--Morris Chart CSS -->
-		<link rel="stylesheet" href="assets/plugins/morris/morris.css">
+    <title>Admin - Food Market</title>
 
-        <!-- App css -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <!--Morris Chart CSS -->
+    <link rel="stylesheet" href="assets/plugins/morris/morris.css">
 
-        <script src="assets/js/modernizr.min.js"></script>
+    <!-- App css -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 
-    </head>
+    <script src="assets/js/modernizr.min.js"></script>
+
+</head>
 
 
-    <body class="fixed-left">
+<body class="fixed-left">
 
-        <!-- Begin page -->
-        <div id="wrapper">
+    <!-- Begin page -->
+    <div id="wrapper">
 
-            <!-- Top Bar Start -->
-            <div class="topbar">
+        <!-- Top Bar Start -->
+        <div class="topbar">
 
-                <!-- LOGO -->
-                <div class="topbar-left">
-                    <a href="index.html" class="logo"><span>Admin<span>to</span></span><i class="mdi mdi-layers"></i></a>
-                </div>
-
-                <!-- Button mobile view to collapse sidebar menu -->
-                <div class="navbar navbar-default" role="navigation">
-                    <div class="container-fluid">
-
-                        <!-- Page title -->
-                        <ul class="nav navbar-nav list-inline navbar-left">
-                            <li class="list-inline-item">
-                                <button class="button-menu-mobile open-left">
-                                    <i class="mdi mdi-menu"></i>
-                                </button>
-                            </li>
-                            <li class="list-inline-item">
-                                <h4 class="page-title">Dashboard</h4>
-                            </li>
-                        </ul>
-
-                        <nav class="navbar-custom">
-
-                            <ul class="list-unstyled topbar-right-menu float-right mb-0">
-
-                                <li>
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="mdi mdi-settings"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <!-- item-->
-                                            <a href="logout.php" class="dropdown-item">Log Out</a>
-                                            
-                                        </div>
-                                    </div>
-                                </li>
-
-                                
-                                
-
-                            </ul>
-                        </nav>
-                    </div><!-- end container -->
-                </div><!-- end navbar -->
+            <!-- LOGO -->
+            <div class="topbar-left">
+                <a href="index.html" class="logo"><span>Admin<span>to</span></span><i class="mdi mdi-layers"></i></a>
             </div>
-            <!-- Top Bar End -->
 
+            <!-- Button mobile view to collapse sidebar menu -->
+            <div class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
 
-            <!-- ========== Left Sidebar Start ========== -->
-            <div class="left side-menu">
-                <div class="sidebar-inner slimscrollleft">
+                    <!-- Page title -->
+                    <ul class="nav navbar-nav list-inline navbar-left">
+                        <li class="list-inline-item">
+                            <button class="button-menu-mobile open-left">
+                                <i class="mdi mdi-menu"></i>
+                            </button>
+                        </li>
+                        <li class="list-inline-item">
+                            <h4 class="page-title">Dashboard</h4>
+                        </li>
+                    </ul>
 
-                    <!-- User -->
-                    <div class="user-box">
-                        <div class="user-img">
-                            <img src="assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail img-responsive">
-                            <div class="user-status offline"><i class="mdi mdi-adjust"></i></div>
-                        </div>
-                        <h5><a href="#">Mat Helme</a> </h5>
-                        
-                    </div>
-                    <!-- End User -->
+                    <nav class="navbar-custom">
 
-                    <!--- Sidemenu -->
-                    <div id="sidebar-menu">
-                        <ul>
-                            <li>
-                                <a href="index.html" class="waves-effect"><i class="mdi mdi-view-dashboard"></i> <span> Dashboard </span> </a>
-                            </li>
+                        <ul class="list-unstyled topbar-right-menu float-right mb-0">
 
                             <li>
-                                <a href="typography.html" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Typography </span> </a>
-                            </li>
+                                <div class="dropdown pull-right">
+                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="mdi mdi-settings"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <!-- item-->
+                                        <a href="logout.php" class="dropdown-item">Log Out</a>
 
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-invert-colors"></i> <span> User Interface </span> <span class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="ui-buttons.html">Buttons</a></li>
-                                    <li><a href="ui-cards.html">Cards</a></li>
-                                    <li><a href="ui-draggable-cards.html">Draggable Cards</a></li>
-                                    <li><a href="ui-checkbox-radio.html">Checkboxs-Radios</a></li>
-                                    <li><a href="ui-material-icons.html">Material Design Icons</a></li>
-                                    <li><a href="ui-font-awesome-icons.html">Font Awesome</a></li>
-                                    <li><a href="ui-dripicons.html">Dripicons</a></li>
-                                    <li><a href="ui-themify-icons.html">Themify Icons</a></li>
-                                    <li><a href="ui-modals.html">Modals</a></li>
-                                    <li><a href="ui-notification.html">Notification</a></li>
-                                    <li><a href="ui-range-slider.html">Range Slider</a></li>
-                                    <li><a href="ui-components.html">Components</a>
-                                    <li><a href="ui-sweetalert.html">Sweet Alert</a>
-                                    <li><a href="ui-treeview.html">Tree view</a>
-                                    <li><a href="ui-widgets.html">Widgets</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-texture"></i><span class="badge badge-warning pull-right">7</span><span> Forms </span> </a>
-                                <ul class="list-unstyled">
-                                    <li><a href="form-elements.html">General Elements</a></li>
-                                    <li><a href="form-advanced.html">Advanced Form</a></li>
-                                    <li><a href="form-validation.html">Form Validation</a></li>
-                                    <li><a href="form-wizard.html">Form Wizard</a></li>
-                                    <li><a href="form-fileupload.html">Form Uploads</a></li>
-                                    <li><a href="form-wysiwig.html">Wysiwig Editors</a></li>
-                                    <li><a href="form-xeditable.html">X-editable</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-view-list"></i> <span> Tables </span> <span class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                	<li><a href="tables-basic.html">Basic Tables</a></li>
-                                    <li><a href="tables-datatable.html">Data Table</a></li>
-                                    <li><a href="tables-responsive.html">Responsive Table</a></li>
-                                    <li><a href="tables-editable.html">Editable Table</a></li>
-                                    <li><a href="tables-tablesaw.html">Tablesaw Table</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-chart-donut-variant"></i><span> Charts </span> <span class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="chart-flot.html">Flot Chart</a></li>
-                                    <li><a href="chart-morris.html">Morris Chart</a></li>
-                                    <li><a href="chart-chartist.html">Chartist Charts</a></li>
-                                    <li><a href="chart-chartjs.html">Chartjs Chart</a></li>
-                                    <li><a href="chart-other.html">Other Chart</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="calendar.html" class="waves-effect"><i class="mdi mdi-calendar"></i><span> Calendar </span></a>
-                            </li>
-
-                            <li>
-                                <a href="inbox.html" class="waves-effect"><i class="mdi mdi-email"></i><span class="badge badge-purple pull-right">New</span><span> Mail </span></a>
-                            </li>
-
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-google-pages"></i><span> Pages </span> <span class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="page-starter.html">Starter Page</a></li>
-                                    <li><a href="page-login.html">Login</a></li>
-                                    <li><a href="page-register.html">Register</a></li>
-                                    <li><a href="page-recoverpw.html">Recover Password</a></li>
-                                    <li><a href="page-lock-screen.html">Lock Screen</a></li>
-                                    <li><a href="page-confirm-mail.html">Confirm Mail</a></li>
-                                    <li><a href="page-404.html">Error 404</a></li>
-                                    <li><a href="page-500.html">Error 500</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-layers"></i><span>Extra Pages </span> <span class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="extras-projects.html">Projects</a></li>
-                                    <li><a href="extras-tour.html">Tour</a></li>
-                                    <li><a href="extras-taskboard.html">Taskboard</a></li>
-                                    <li><a href="extras-taskdetail.html">Task Detail</a></li>
-                                    <li><a href="extras-profile.html">Profile</a></li>
-                                    <li><a href="extras-maps.html">Maps</a></li>
-                                    <li><a href="extras-contact.html">Contact list</a></li>
-                                    <li><a href="extras-pricing.html">Pricing</a></li>
-                                    <li><a href="extras-timeline.html">Timeline</a></li>
-                                    <li><a href="extras-invoice.html">Invoice</a></li>
-                                    <li><a href="extras-faq.html">FAQ</a></li>
-                                    <li><a href="extras-gallery.html">Gallery</a></li>
-                                    <!-- <li><a href="extras-email-template.html">Email template</a></li> -->
-                                    <li><a href="extras-maintenance.html">Maintenance</a></li>
-                                    <li><a href="extras-comingsoon.html">Coming soon</a></li>
-                                </ul>
-                            </li>
-
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <!-- Sidebar -->
-                    <div class="clearfix"></div>
-
-                </div>
-
-            </div>
-            <!-- Left Sidebar End -->
-
-
-
-            <!-- ============================================================== -->
-            <!-- Start right Content here -->
-            <!-- ============================================================== -->
-            <div class="content-page">
-                <!-- Start content -->
-                <div class="content">
-                    <div class="container-fluid">
-
-
-                        <div class="row">
-
-                            <div class="col-xl-3 col-md-6">
-                        		<div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                        </div>
-                                    </div>
-
-                        			<h4 class="header-title mt-0 m-b-30">Total Revenue</h4>
-
-                                    <div class="widget-chart-1">
-                                        <div class="widget-chart-box-1">
-                                            <input data-plugin="knob" data-width="80" data-height="80" data-fgColor="#f05050 "
-                                               data-bgColor="#F9B9B9" value="58"
-                                               data-skin="tron" data-angleOffset="180" data-readOnly=true
-                                               data-thickness=".15"/>
-                                        </div>
-
-                                        <div class="widget-detail-1">
-                                            <h2 class="p-t-10 mb-0"> 256 </h2>
-                                            <p class="text-muted m-b-10">Revenue today</p>
-                                        </div>
-                                    </div>
-                        		</div>
-                            </div><!-- end col -->
-
-                            <div class="col-xl-3 col-md-6">
-                        		<div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                        </div>
-                                    </div>
-
-                        			<h4 class="header-title mt-0 m-b-30">Sales Analytics</h4>
-
-                                    <div class="widget-box-2">
-                                        <div class="widget-detail-2">
-                                            <span class="badge badge-success badge-pill pull-left m-t-20">32% <i class="mdi mdi-trending-up"></i> </span>
-                                            <h2 class="mb-0"> 8451 </h2>
-                                            <p class="text-muted m-b-25">Revenue today</p>
-                                        </div>
-                                        <div class="progress progress-bar-success-alt progress-sm mb-0">
-                                            <div class="progress-bar progress-bar-success" role="progressbar"
-                                                 aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"
-                                                 style="width: 77%;">
-                                                <span class="sr-only">77% Complete</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                        		</div>
-                            </div><!-- end col -->
-
-                            <div class="col-xl-3 col-md-6">
-                        		<div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                        </div>
-                                    </div>
-
-                        			<h4 class="header-title mt-0 m-b-30">Statistics</h4>
-
-                                    <div class="widget-chart-1">
-                                        <div class="widget-chart-box-1">
-                                            <input data-plugin="knob" data-width="80" data-height="80" data-fgColor="#ffbd4a"
-                                               data-bgColor="#FFE6BA" value="80"
-                                               data-skin="tron" data-angleOffset="180" data-readOnly=true
-                                               data-thickness=".15"/>
-                                        </div>
-                                        <div class="widget-detail-1">
-                                            <h2 class="p-t-10 mb-0"> 4569 </h2>
-                                            <p class="text-muted m-b-10">Revenue today</p>
-                                        </div>
-                                    </div>
-                        		</div>
-                            </div><!-- end col -->
-
-                            <div class="col-xl-3 col-md-6">
-                        		<div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                        </div>
-                                    </div>
-
-                        			<h4 class="header-title mt-0 m-b-30">Daily Sales</h4>
-
-                                    <div class="widget-box-2">
-                                        <div class="widget-detail-2">
-                                            <span class="badge badge-pink badge-pill pull-left m-t-20">32% <i class="mdi mdi-trending-up"></i> </span>
-                                            <h2 class="mb-0"> 158 </h2>
-                                            <p class="text-muted m-b-25">Revenue today</p>
-                                        </div>
-                                        <div class="progress progress-bar-pink-alt progress-sm mb-0">
-                                            <div class="progress-bar progress-bar-pink" role="progressbar"
-                                                 aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"
-                                                 style="width: 77%;">
-                                                <span class="sr-only">77% Complete</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                        		</div>
-                            </div><!-- end col -->
-
-                        </div>
-                        <!-- end row -->
-
-
-                        
-
-
-                        <div class="row">
-                            <div class="col-xl-8">
-                                <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                        </div>
-                                    </div>
-
-                        			<h4 class="header-title mt-0 m-b-30">Latest Projects</h4>
-
-                                    <div class="table-responsive">
-                                        <table class="table mb-0">
-                                            <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Project Name</th>
-                                                <th>Start Date</th>
-                                                <th>Due Date</th>
-                                                <th>Status</th>
-                                                <th>Assign</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Adminto Admin v1</td>
-                                                    <td>01/01/2017</td>
-                                                    <td>26/04/2017</td>
-                                                    <td><span class="badge badge-danger">Released</span></td>
-                                                    <td>Coderthemes</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Adminto Frontend v1</td>
-                                                    <td>01/01/2017</td>
-                                                    <td>26/04/2017</td>
-                                                    <td><span class="badge badge-success">Released</span></td>
-                                                    <td>Adminto admin</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Adminto Admin v1.1</td>
-                                                    <td>01/05/2017</td>
-                                                    <td>10/05/2017</td>
-                                                    <td><span class="badge badge-pink">Pending</span></td>
-                                                    <td>Coderthemes</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>Adminto Frontend v1.1</td>
-                                                    <td>01/01/2017</td>
-                                                    <td>31/05/2017</td>
-                                                    <td><span class="badge badge-purple">Work in Progress</span>
-                                                    </td>
-                                                    <td>Adminto admin</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>5</td>
-                                                    <td>Adminto Admin v1.3</td>
-                                                    <td>01/01/2017</td>
-                                                    <td>31/05/2017</td>
-                                                    <td><span class="badge badge-warning">Coming soon</span></td>
-                                                    <td>Coderthemes</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>6</td>
-                                                    <td>Adminto Admin v1.3</td>
-                                                    <td>01/01/2017</td>
-                                                    <td>31/05/2017</td>
-                                                    <td><span class="badge badge-primary">Coming soon</span></td>
-                                                    <td>Adminto admin</td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
                                     </div>
                                 </div>
-                            </div><!-- end col -->
+                            </li>
+                        </ul>
+                    </nav>
+                </div><!-- end container -->
+            </div><!-- end navbar -->
+        </div>
+        <!-- Top Bar End -->
 
-                        </div>
-                        <!-- end row -->
 
-                    </div> <!-- container -->
+        <!-- ========== Left Sidebar Start ========== -->
+        <div class="left side-menu">
+            <div class="sidebar-inner slimscrollleft">
 
-                </div> <!-- content -->
+                <!-- User -->
+                <div class="user-box">
+                    <div class="user-img">
+                        <img src="assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail img-responsive">
+                        <div class="user-status offline"><i class="mdi mdi-adjust"></i></div>
+                    </div>
+                    <h5><a href="#"><?= $_SESSION['name']; ?></a> </h5>
 
-                <footer class="footer text-right">
-                    2016 - 2018 © Adminto. Coderthemes.com
-                </footer>
+                </div>
+                <!-- End User -->
+
+                <!--- Sidemenu -->
+                <div id="sidebar-menu">
+                    <ul>
+                        <li>
+                            <a href="index.html" class="waves-effect"><i class="mdi mdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                        </li>
+
+                        <li>
+                            <a href="typography.html" class="waves-effect"><i class="mdi mdi-format-font"></i> <span> Typography </span> </a>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-invert-colors"></i> <span> User Interface </span> <span class="menu-arrow"></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="ui-buttons.html">Buttons</a></li>
+                                <li><a href="ui-cards.html">Cards</a></li>
+                                <li><a href="ui-draggable-cards.html">Draggable Cards</a></li>
+                                <li><a href="ui-checkbox-radio.html">Checkboxs-Radios</a></li>
+                                <li><a href="ui-material-icons.html">Material Design Icons</a></li>
+                                <li><a href="ui-font-awesome-icons.html">Font Awesome</a></li>
+                                <li><a href="ui-dripicons.html">Dripicons</a></li>
+                                <li><a href="ui-themify-icons.html">Themify Icons</a></li>
+                                <li><a href="ui-modals.html">Modals</a></li>
+                                <li><a href="ui-notification.html">Notification</a></li>
+                                <li><a href="ui-range-slider.html">Range Slider</a></li>
+                                <li><a href="ui-components.html">Components</a>
+                                <li><a href="ui-sweetalert.html">Sweet Alert</a>
+                                <li><a href="ui-treeview.html">Tree view</a>
+                                <li><a href="ui-widgets.html">Widgets</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-texture"></i><span class="badge badge-warning pull-right">7</span><span> Forms </span> </a>
+                            <ul class="list-unstyled">
+                                <li><a href="form-elements.html">General Elements</a></li>
+                                <li><a href="form-advanced.html">Advanced Form</a></li>
+                                <li><a href="form-validation.html">Form Validation</a></li>
+                                <li><a href="form-wizard.html">Form Wizard</a></li>
+                                <li><a href="form-fileupload.html">Form Uploads</a></li>
+                                <li><a href="form-wysiwig.html">Wysiwig Editors</a></li>
+                                <li><a href="form-xeditable.html">X-editable</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-view-list"></i> <span> Tables </span> <span class="menu-arrow"></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="tables-basic.html">Basic Tables</a></li>
+                                <li><a href="tables-datatable.html">Data Table</a></li>
+                                <li><a href="tables-responsive.html">Responsive Table</a></li>
+                                <li><a href="tables-editable.html">Editable Table</a></li>
+                                <li><a href="tables-tablesaw.html">Tablesaw Table</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-chart-donut-variant"></i><span> Charts </span> <span class="menu-arrow"></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="chart-flot.html">Flot Chart</a></li>
+                                <li><a href="chart-morris.html">Morris Chart</a></li>
+                                <li><a href="chart-chartist.html">Chartist Charts</a></li>
+                                <li><a href="chart-chartjs.html">Chartjs Chart</a></li>
+                                <li><a href="chart-other.html">Other Chart</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="calendar.html" class="waves-effect"><i class="mdi mdi-calendar"></i><span> Calendar </span></a>
+                        </li>
+
+                        <li>
+                            <a href="inbox.html" class="waves-effect"><i class="mdi mdi-email"></i><span class="badge badge-purple pull-right">New</span><span> Mail </span></a>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-google-pages"></i><span> Pages </span> <span class="menu-arrow"></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="page-starter.html">Starter Page</a></li>
+                                <li><a href="page-login.html">Login</a></li>
+                                <li><a href="page-register.html">Register</a></li>
+                                <li><a href="page-recoverpw.html">Recover Password</a></li>
+                                <li><a href="page-lock-screen.html">Lock Screen</a></li>
+                                <li><a href="page-confirm-mail.html">Confirm Mail</a></li>
+                                <li><a href="page-404.html">Error 404</a></li>
+                                <li><a href="page-500.html">Error 500</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-layers"></i><span>Extra Pages </span> <span class="menu-arrow"></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="extras-projects.html">Projects</a></li>
+                                <li><a href="extras-tour.html">Tour</a></li>
+                                <li><a href="extras-taskboard.html">Taskboard</a></li>
+                                <li><a href="extras-taskdetail.html">Task Detail</a></li>
+                                <li><a href="extras-profile.html">Profile</a></li>
+                                <li><a href="extras-maps.html">Maps</a></li>
+                                <li><a href="extras-contact.html">Contact list</a></li>
+                                <li><a href="extras-pricing.html">Pricing</a></li>
+                                <li><a href="extras-timeline.html">Timeline</a></li>
+                                <li><a href="extras-invoice.html">Invoice</a></li>
+                                <li><a href="extras-faq.html">FAQ</a></li>
+                                <li><a href="extras-gallery.html">Gallery</a></li>
+                                <!-- <li><a href="extras-email-template.html">Email template</a></li> -->
+                                <li><a href="extras-maintenance.html">Maintenance</a></li>
+                                <li><a href="extras-comingsoon.html">Coming soon</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <!-- Sidebar -->
+                <div class="clearfix"></div>
 
             </div>
 
-
-            <!-- ============================================================== -->
-            <!-- End Right content here -->
-            <!-- ============================================================== -->
+        </div>
+        <!-- Left Sidebar End -->
 
 
-            
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+                <div class="container-fluid">
+
+
+                    <div class="row">
+
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card-box">
+
+
+                                <h4 class="header-title mt-0 m-b-30">Total Food</h4>
+
+                                <div class="widget-chart-1">
+
+                                    <div class="widget-detail-1">
+                                        <h2 class="p-t-10 mb-0"> <?= $food_total ?> </h2>
+                                        <p class="text-muted m-b-10">Revenue today</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end col -->
+
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card-box">
+
+
+                                <h4 class="header-title mt-0 m-b-30">Food Kategori</h4>
+
+                                <div class="widget-chart-1">
+
+                                    <div class="widget-detail-1">
+                                        <h2 class="p-t-10 mb-0"> <?= $food_category_total ?> </h2>
+                                        <p class="text-muted m-b-10">Revenue today</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end col -->
+
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card-box">
+
+                                <h4 class="header-title mt-0 m-b-30">Total Transaksi</h4>
+
+                                <div class="widget-chart-1">
+
+                                    <div class="widget-detail-1">
+                                        <h2 class="p-t-10 mb-0"> <?= $transaction_total ?> </h2>
+                                        <p class="text-muted m-b-10">Revenue today</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end col -->
+
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card-box">
+
+
+                                <h4 class="header-title mt-0 m-b-30">Total Users</h4>
+
+                                <div class="widget-chart-1">
+
+                                    <div class="widget-detail-1">
+                                        <h2 class="p-t-10 mb-0"> <?= $user_total ?> </h2>
+                                        <p class="text-muted m-b-10">Revenue today</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end col -->
+
+                    </div>
+                    <!-- end row -->
+
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card-box">
+
+
+                                <h4 class="header-title mt-0 m-b-30">Transaksi Terbaru</h4>
+
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Food</th>
+                                                <th>User</th>
+                                                <th>Waktu</th>
+                                                <th>Status</th>
+                                                <th>Pembayaran</th>
+                                                <th>Jumlah</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                                $number = 1;
+                                                while ($transaction = mysqli_fetch_assoc($transactions)) { 
+                                            ?>
+                                                <tr>
+                                                    <td><?= $number++; ?></td>
+                                                    <td><?= $transaction['food_id'] ?></td>
+                                                    <td><?= $transaction['user_id'] ?></td>
+                                                    <td>01/01/2017</td>
+                                                    <td><?= $transaction['status_id'] ?></td>
+                                                    <td><?= $transaction['payment_id'] ?></td>
+                                                    <td><?= $transaction['total'] ?></td>
+                                                    <td><?= $transaction['amount'] ?></td>
+                                                </tr>
+                                            <?php } ?>
+                                            
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div><!-- end col -->
+
+                    </div>
+                    <!-- end row -->
+
+                </div> <!-- container -->
+
+            </div> <!-- content -->
+
+            <footer class="footer text-right">
+                2016 - 2018 © Adminto. Coderthemes.com
+            </footer>
 
         </div>
-        <!-- END wrapper -->
+
+    </div>
+    <!-- END wrapper -->
 
 
-        <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/detect.js"></script>
-        <script src="assets/js/fastclick.js"></script>
-        <script src="assets/js/jquery.blockUI.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/jquery.nicescroll.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
-        <script src="assets/js/jquery.scrollTo.min.js"></script>
+    <!-- jQuery  -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/detect.js"></script>
+    <script src="assets/js/fastclick.js"></script>
+    <script src="assets/js/jquery.blockUI.js"></script>
+    <script src="assets/js/waves.js"></script>
+    <script src="assets/js/jquery.nicescroll.js"></script>
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <script src="assets/js/jquery.scrollTo.min.js"></script>
 
-        <!-- KNOB JS -->
-        <!--[if IE]>
+    <!-- KNOB JS -->
+    <!--[if IE]>
         <script type="text/javascript" src="assets/plugins/jquery-knob/excanvas.js"></script>
         <![endif]-->
-        <script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
+    <script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
 
-        <!--Morris Chart-->
-		<script src="assets/plugins/morris/morris.min.js"></script>
-		<script src="assets/plugins/raphael/raphael-min.js"></script>
+    <!--Morris Chart-->
+    <script src="assets/plugins/morris/morris.min.js"></script>
+    <script src="assets/plugins/raphael/raphael-min.js"></script>
 
-        <!-- Dashboard init -->
-        <script src="assets/pages/jquery.dashboard.js"></script>
+    <!-- Dashboard init -->
+    <script src="assets/pages/jquery.dashboard.js"></script>
 
-        <!-- App js -->
-        <script src="assets/js/jquery.core.js"></script>
-        <script src="assets/js/jquery.app.js"></script>
+    <!-- App js -->
+    <script src="assets/js/jquery.core.js"></script>
+    <script src="assets/js/jquery.app.js"></script>
 
-    </body>
+</body>
+
 </html>

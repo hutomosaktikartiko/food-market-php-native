@@ -44,4 +44,29 @@ class Database
         $_SESSION['name'] = $data_user['name'];
         $_SESSION['is_login'] = TRUE;
     }
+
+    function getFood()
+    {
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food");
+        return $query;
+    }
+
+    function getFoodCategory()
+    {
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food_category");
+        return $query;
+    }
+
+    function getTransactions()
+    {
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_transactions");
+        return $query;
+    }
+
+    function getUser()
+    {
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_users");
+        return $query;
+    }
+    
 }
