@@ -68,5 +68,11 @@ class Database
         $query = mysqli_query($this->koneksi, "SELECT * FROM tb_users");
         return $query;
     }
+
+    function deleteTransaction($transactionId)
+    {
+        $query = mysqli_query($this->koneksi, "DELETE FROM tb_transactions WHERE id=$transactionId");
+        return $query;
+    }
     
 }

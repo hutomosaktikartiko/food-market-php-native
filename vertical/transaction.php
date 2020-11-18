@@ -1,23 +1,10 @@
 <?php
 include_once('db_connect.php');
 $database = new database();
-    session_start();
-	if(!isset($_SESSION['is_login']))
-    {
-      header('location:page-login.php');
-    }
 
-    $foods = $database->getFood();
-    $food_total = mysqli_num_rows($foods);
+$transactions = $database->getTransactions();
+$transaction_total = mysqli_num_rows($transactions);
 
-    $food_category = $database->getFoodCategory();
-    $food_category_total = mysqli_num_rows($food_category);
-
-    $transactions = $database->getTransactions();
-    $transaction_total = mysqli_num_rows($transactions);
-
-    $users = $database->getUser();
-    $user_total = mysqli_num_rows($users);
 ?>
 
 <!DOCTYPE html>
@@ -31,15 +18,17 @@ $database = new database();
 
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-    <title>Admin - Food Market</title>
+    <title>Adminto - Responsive Admin Dashboard Template</title>
 
-    <!--Morris Chart CSS -->
-    <link rel="stylesheet" href="assets/plugins/morris/morris.css">
+    <!-- Sweet Alert css -->
+    <link href="assets/plugins/sweet-alert/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
     <!-- App css -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+
+
 
     <script src="assets/js/modernizr.min.js"></script>
 
@@ -71,28 +60,9 @@ $database = new database();
                             </button>
                         </li>
                         <li class="list-inline-item">
-                            <h4 class="page-title">Dashboard</h4>
+                            <h4 class="page-title">Transaction</h4>
                         </li>
                     </ul>
-
-                    <nav class="navbar-custom">
-
-                        <ul class="list-unstyled topbar-right-menu float-right mb-0">
-
-                            <li>
-                                <div class="dropdown pull-right">
-                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="mdi mdi-settings"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <!-- item-->
-                                        <a href="logout.php" class="dropdown-item" id="sa-warning">Log Out</a>
-                                        <!-- <button type="button" class="btn btn-light waves-effect waves-light btn-sm" id="sa-warning">Click me</button> -->
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </nav>
                 </div><!-- end container -->
             </div><!-- end navbar -->
         </div>
@@ -109,14 +79,28 @@ $database = new database();
                         <img src="assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail img-responsive">
                         <div class="user-status offline"><i class="mdi mdi-adjust"></i></div>
                     </div>
-                    <h5><a href="#"><?= $_SESSION['name']; ?></a> </h5>
+                    <h5><a href="#">Mat Helme</a> </h5>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="mdi mdi-settings"></i>
+                            </a>
+                        </li>
 
+                        <li class="list-inline-item">
+                            <a href="#" class="text-custom">
+                                <i class="mdi mdi-power"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
                 <!-- End User -->
 
                 <!--- Sidemenu -->
                 <div id="sidebar-menu">
                     <ul>
+                        <li class="text-muted menu-title">Navigation</li>
+
                         <li>
                             <a href="index.php" class="waves-effect"><i class="mdi mdi-view-dashboard"></i> <span> Dashboard </span> </a>
                         </li>
@@ -218,7 +202,7 @@ $database = new database();
                                 <li><a href="extras-invoice.html">Invoice</a></li>
                                 <li><a href="extras-faq.html">FAQ</a></li>
                                 <li><a href="extras-gallery.html">Gallery</a></li>
-                                <!-- <li><a href="extras-email-template.html">Email template</a></li> -->
+                                <li><a href="extras-email-template.html">Email template</a></li>
                                 <li><a href="extras-maintenance.html">Maintenance</a></li>
                                 <li><a href="extras-comingsoon.html">Coming soon</a></li>
                             </ul>
@@ -245,79 +229,47 @@ $database = new database();
             <div class="content">
                 <div class="container-fluid">
 
-
-                    <div class="row">
-
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card-box">
-
-
-                                <h4 class="header-title mt-0 m-b-30">Total Food</h4>
-
-                                <div class="widget-chart-1">
-
-                                    <div class="widget-detail-1">
-                                        <h2 class="p-t-10 mb-0"> <?= $food_total ?> </h2>
-                                        <p class="text-muted m-b-10">Revenue today</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- end col -->
-
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card-box">
-
-
-                                <h4 class="header-title mt-0 m-b-30">Food Kategori</h4>
-
-                                <div class="widget-chart-1">
-
-                                    <div class="widget-detail-1">
-                                        <h2 class="p-t-10 mb-0"> <?= $food_category_total ?> </h2>
-                                        <p class="text-muted m-b-10">Revenue today</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- end col -->
-
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card-box">
-
-                                <h4 class="header-title mt-0 m-b-30">Total Transaksi</h4>
-
-                                <div class="widget-chart-1">
-
-                                    <div class="widget-detail-1">
-                                        <h2 class="p-t-10 mb-0"> <?= $transaction_total ?> </h2>
-                                        <p class="text-muted m-b-10">Revenue today</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- end col -->
-
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card-box">
-
-
-                                <h4 class="header-title mt-0 m-b-30">Total Users</h4>
-
-                                <div class="widget-chart-1">
-
-                                    <div class="widget-detail-1">
-                                        <h2 class="p-t-10 mb-0"> <?= $user_total ?> </h2>
-                                        <p class="text-muted m-b-10">Revenue today</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- end col -->
-
-                    </div>
-                    <!-- end row -->
-
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="card-box">
-                                <h4 class="header-title mt-0 m-b-30">Transaksi Terbaru</h4>
+
+                                <!--  Modal content for the above example -->
+                                <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myLargeModalLabel">Edit Data</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="col-md-12">
+                                                    <form role="form">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Email address</label>
+                                                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">Password</label>
+                                                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                                        </div>
+                                                        <div class="form-group text-right m-b-0">
+                                                            <button class="btn btn-primary waves-effect waves-light" type="submit">
+                                                                Submit
+                                                            </button>
+                                                            <button type="reset" class="btn btn-secondary waves-effect waves-light m-l-5" data-dismiss="modal" aria-hidden="true">
+                                                                Cancel
+                                                            </button>
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+
+                                <h4 class="header-title mt-0 m-b-30">Semua Transaksi</h4>
 
                                 <div class="table-responsive">
                                     <table class="table mb-0">
@@ -331,12 +283,13 @@ $database = new database();
                                                 <th>Pembayaran</th>
                                                 <th>Jumlah</th>
                                                 <th>Total</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php 
-                                                $number = 1;
-                                                while ($transaction = mysqli_fetch_assoc($transactions)) { 
+                                            <?php
+                                            $number = 1;
+                                            while ($transaction = mysqli_fetch_assoc($transactions)) {
                                             ?>
                                                 <tr>
                                                     <td><?= $number++; ?></td>
@@ -347,10 +300,12 @@ $database = new database();
                                                     <td><?= $transaction['payment_id'] ?></td>
                                                     <td><?= $transaction['total'] ?></td>
                                                     <td><?= $transaction['amount'] ?></td>
+                                                    <td>
+                                                        <a type="button" class="btn btn-light waves-effect waves-light btn-danger" id="deletetransaction" onclick="deleteTransaction(<?= $transaction['id'] ?>)"><i class="fa fa-remove"></i></a>
+                                                    </td>
                                                 </tr>
-                                            <?php } ?>
-                                            
 
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -359,6 +314,7 @@ $database = new database();
 
                     </div>
                     <!-- end row -->
+
 
                 </div> <!-- container -->
 
@@ -370,25 +326,12 @@ $database = new database();
 
         </div>
 
+
+
     </div>
     <!-- END wrapper -->
 
-    <script>
-        //Warning Message
-        $('#logout-alert').click(function () {
-            swal({
-                title: 'Apakah kamu yakin ingin keluar?',
-                text: "Anda harus login ulang untuk mengakses halaman ini!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#4fa7f3',
-                cancelButtonColor: '#d57171',
-                confirmButtonText: 'Yes, delete it!'
-            }).then(function () {
-                logout.php;
-            })
-        });
-    </script>
+
 
 
     <!-- jQuery  -->
@@ -403,22 +346,49 @@ $database = new database();
     <script src="assets/js/jquery.slimscroll.js"></script>
     <script src="assets/js/jquery.scrollTo.min.js"></script>
 
-    <!-- KNOB JS -->
-    <!--[if IE]>
-        <script type="text/javascript" src="assets/plugins/jquery-knob/excanvas.js"></script>
-        <![endif]-->
-    <script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
-
-    <!--Morris Chart-->
-    <script src="assets/plugins/morris/morris.min.js"></script>
-    <script src="assets/plugins/raphael/raphael-min.js"></script>
-
-    <!-- Dashboard init -->
-    <script src="assets/pages/jquery.dashboard.js"></script>
+    <!-- Sweet Alert Js  -->
+    <script src="assets/plugins/sweet-alert/sweetalert2.min.js"></script>
+    <script src="assets/pages/jquery.sweet-alert.init.js"></script>
 
     <!-- App js -->
     <script src="assets/js/jquery.core.js"></script>
     <script src="assets/js/jquery.app.js"></script>
+
+    <script>
+
+        function deleteTransaction(tableId) {
+            var transactionId = tableId;
+            swal({
+                title: 'Apakah anda yakin ingin menghapus ini?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#4fa7f3',
+                cancelButtonColor: '#d57171',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function() {
+                console.log(tableId);
+                $.ajax({
+                    type: "POST",
+                    url: "delete.php",
+                    data: {id:tableId},
+                    
+                    success: function(data) {
+                        swal(
+                            'Deleted!',
+                            'Data berhasil dihapus.',
+                            'success'
+                        );
+                        console.log(data);
+                    },
+                    error: function(xhr) {
+                    }
+                });
+
+
+            });
+        };
+    </script>
 
 </body>
 
