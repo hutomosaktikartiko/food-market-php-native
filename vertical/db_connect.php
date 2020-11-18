@@ -74,5 +74,17 @@ class Database
         $query = mysqli_query($this->koneksi, "DELETE FROM tb_transactions WHERE id=$transactionId");
         return $query;
     }
+
+    function deleteFood($foodId)
+    {
+        $query = mysqli_query($this->koneksi, "DELETE FROM tb_food WHERE id=$foodId");
+        return $query;
+    }
+
+    function addFood($categoryId, $name, $description, $price, $total)
+    {
+        $query = mysqli_query($this->koneksi, "INSERT INTO tb_food (id, category_id, name, description, price, total) VALUES ('', '$categoryId', '$name', '$description', '$price', '$total')");
+        return $query;
+    }
     
 }

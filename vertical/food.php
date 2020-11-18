@@ -2,10 +2,10 @@
 include_once('db_connect.php');
 $database = new database();
 
-$transactions = $database->getTransactions();
-$transaction_total = mysqli_num_rows($transactions);
+$foods = $database->getFood();
 
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -27,8 +27,6 @@ $transaction_total = mysqli_num_rows($transactions);
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
-
-
 
     <script src="assets/js/modernizr.min.js"></script>
 
@@ -60,9 +58,11 @@ $transaction_total = mysqli_num_rows($transactions);
                             </button>
                         </li>
                         <li class="list-inline-item">
-                            <h4 class="page-title">Transaction</h4>
+                            <h4 class="page-title">Food</h4>
                         </li>
                     </ul>
+
+
                 </div><!-- end container -->
             </div><!-- end navbar -->
         </div>
@@ -232,42 +232,91 @@ $transaction_total = mysqli_num_rows($transactions);
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="card-box">
+                                <!--  Modal content for the above example -->
+                                <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myLargeModalLabel">Tambah Food</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="col-md-12">
+                                                    <form role="form" method="post" class="form-add-food">
+                                                        <div class="form-group">
+                                                            <label for="judul">Judul</label>
+                                                            <input type="text" class="form-control" name="name" id="judul" aria-describedby="emailHelp" placeholder="Judul makanan">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="company">Kategori</label>
+                                                            <div class="">
+                                                                <select id="company" class="form-control" name="categoryId">
+                                                                    <option value="1">Makanan Kaleng</option>
+                                                                    <option value="2">Makanan Ringan</option>
+                                                                    <!-- <option value="3">3</option> -->
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="form-group">
+                                                            <label for="food-category">Kategori</label>
+                                                            <input type="text" class="form-control" name="categoryId" id="food-category" placeholder="Kategori makanan">
+                                                        </div> -->
+                                                        <div class="form-group">
+                                                            <label for="food-description">Deskripsi</label>
+                                                            <input type="text" class="form-control" name="description" id="food-description" placeholder="Deskripsi makanan">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="food-price">Harga</label>
+                                                            <input type="number" class="form-control" name="price" id="food-price" placeholder="Rp. 100000">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="food-total">Jumlah</label>
+                                                            <input type="number" class="form-control" name="total" id="food-total" placeholder="Jumlah yang tersedia">
+                                                        </div>
+                                                        <div class="form-group text-right m-b-0">
+                                                            <button class="btn btn-primary waves-effect waves-light" onclick="addFood()" type="submit">
+                                                                Tambah
+                                                            </button>
+                                                            <button type="reset" class="btn btn-secondary waves-effect waves-light m-l-5" data-dismiss="modal" aria-hidden="true">
+                                                                Batal
+                                                            </button>
+                                                        </div>
+                                                    </form>
 
-                                
-
-                                <h4 class="header-title mt-0 m-b-30">Semua Transaksi</h4>
-
+                                                </div>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+                                <h4 class="header-title mt-0 m-b-15">Data Food</h4>
+                                <button type="button" class="btn btn-primary waves-effect w-md waves-light m-b-15" data-toggle="modal" data-target=".bs-example-modal-lg">Tambah Data</button>
                                 <div class="table-responsive">
                                     <table class="table mb-0">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Food</th>
-                                                <th>User</th>
-                                                <th>Waktu</th>
-                                                <th>Status</th>
-                                                <th>Pembayaran</th>
+                                                <th>Judul</th>
+                                                <th>Kategori</th>
+                                                <th>Deskripsi</th>
+                                                <th>Harga</th>
                                                 <th>Jumlah</th>
-                                                <th>Total</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
                                             $number = 1;
-                                            while ($transaction = mysqli_fetch_assoc($transactions)) {
+                                            while ($food = mysqli_fetch_assoc($foods)) {
                                             ?>
                                                 <tr>
                                                     <td><?= $number++; ?></td>
-                                                    <td><?= $transaction['food_id'] ?></td>
-                                                    <td><?= $transaction['user_id'] ?></td>
-                                                    <td>01/01/2017</td>
-                                                    <td><?= $transaction['status_id'] ?></td>
-                                                    <td><?= $transaction['payment_id'] ?></td>
-                                                    <td><?= $transaction['total'] ?></td>
-                                                    <td><?= $transaction['amount'] ?></td>
+                                                    <td><?= $food['name'] ?></td>
+                                                    <td><?= $food['category_id'] ?></td>
+                                                    <td><?= $food['description'] ?></td>
+                                                    <td><?= $food['price'] ?></td>
+                                                    <td><?= $food['total'] ?></td>
                                                     <td>
-                                                        <a type="button" class="btn btn-light waves-effect waves-light btn-danger" id="deletetransaction" onclick="deleteTransaction(<?= $transaction['id'] ?>)"><i class="fa fa-remove"></i></a>
+                                                        <a type="button" class="btn btn-light waves-effect waves-light btn-danger" id="deletetransaction" onclick="deleteFood(<?= $food['id'] ?>)"><i class="fa fa-remove"></i></a>
                                                     </td>
                                                 </tr>
 
@@ -275,12 +324,13 @@ $transaction_total = mysqli_num_rows($transactions);
                                         </tbody>
                                     </table>
                                 </div>
+
                             </div>
-                        </div><!-- end col -->
+                        </div><!-- end col-->
+
 
                     </div>
                     <!-- end row -->
-
 
                 </div> <!-- container -->
 
@@ -293,11 +343,13 @@ $transaction_total = mysqli_num_rows($transactions);
         </div>
 
 
+        <!-- ============================================================== -->
+        <!-- End Right content here -->
+        <!-- ============================================================== -->
+
 
     </div>
     <!-- END wrapper -->
-
-
 
 
     <!-- jQuery  -->
@@ -321,9 +373,7 @@ $transaction_total = mysqli_num_rows($transactions);
     <script src="assets/js/jquery.app.js"></script>
 
     <script>
-
-        function deleteTransaction(tableId) {
-            var transactionId = tableId;
+        function deleteFood(foodId) {
             swal({
                 title: 'Apakah anda yakin ingin menghapus ini?',
                 text: "You won't be able to revert this!",
@@ -333,26 +383,59 @@ $transaction_total = mysqli_num_rows($transactions);
                 cancelButtonColor: '#d57171',
                 confirmButtonText: 'Yes, delete it!'
             }).then(function() {
-                console.log(tableId);
+                console.log(foodId);
                 $.ajax({
                     type: "POST",
                     url: "delete.php",
-                    data: {id:tableId},
-                    
+                    data: {
+                        id: foodId,
+                        delete: "FOOD"
+                    },
+
+
                     success: function(data) {
                         swal(
                             'Deleted!',
                             'Data berhasil dihapus.',
                             'success'
                         );
-                        console.log(data);
                     },
                     error: function(xhr) {
+                        swal(
+                            'Failed',
+                            'Gagal menghapus data!',
+                            'error'
+                        )
                     }
                 });
-
-
             });
+
+        };
+
+        function addFood() {
+            var data = $('.form-add-food').serialize();
+            console.log(data);
+            $.ajax({
+                type: "POST",
+                url: "input.php",
+                data: data,
+
+                success: function(data) {
+                    swal(
+                        'Sukses!',
+                        'Berhasil menambah Data.',
+                        'success'
+                    );
+                },
+                error: function(xhr) {
+                    swal(
+                            'Failed',
+                            'Gagal menghapus data!',
+                            'error'
+                        )
+                }
+            });
+
         };
     </script>
 

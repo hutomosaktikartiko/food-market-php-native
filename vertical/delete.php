@@ -3,6 +3,12 @@ include_once('db_connect.php');
 $database = new database();
 
 $id = $_POST['id'];
-echo $id;
+$delete = $_POST['delete'];
 
-$result = $database->deleteTransaction($id);
+if ($delete == "FOOD") {
+    $result = $database->deleteFood($id);
+}
+else {
+    $result = $database->deleteTransaction($id);
+}
+
