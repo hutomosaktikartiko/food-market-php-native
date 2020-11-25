@@ -233,7 +233,7 @@ $foods = $database->getFood();
                         <div class="col-xl-12">
                             <div class="card-box">
                                 <!--  Modal content for the above example -->
-                                <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                                <div class="modal fade bs-add-food-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -288,8 +288,11 @@ $foods = $database->getFood();
                                         </div><!-- /.modal-content -->
                                     </div><!-- /.modal-dialog -->
                                 </div><!-- /.modal -->
+
+
+
                                 <h4 class="header-title mt-0 m-b-15">Data Food</h4>
-                                <button type="button" class="btn btn-primary waves-effect w-md waves-light m-b-15" data-toggle="modal" data-target=".bs-example-modal-lg">Tambah Data</button>
+                                <button type="button" class="btn btn-primary waves-effect w-md waves-light m-b-15" data-toggle="modal" data-target=".bs-add-food-modal-lg">Tambah Data</button>
                                 <div class="table-responsive">
                                     <table class="table mb-0">
                                         <thead>
@@ -317,8 +320,79 @@ $foods = $database->getFood();
                                                     <td><?= $food['total'] ?></td>
                                                     <td>
                                                         <a type="button" class="btn btn-light waves-effect waves-light btn-danger" id="deletetransaction" onclick="deleteFood(<?= $food['id'] ?>)"><i class="fa fa-remove"></i></a>
+                                                        <a type="button" class="btn btn-light waves-effect waves-light btn-warning" id="updatetransaction" data-toggle="modal" data-target="#bs-update-food-modal-lg<?= $food['id'] ?>"><i class="fa fa-edit"></i></a>
                                                     </td>
                                                 </tr>
+
+                                                <!--  Modal content for the above example -->
+                                                <div class="modal fade " id="bs-update-food-modal-lg<?= $food['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="myLargeModalLabel">Update Food</h4>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="col-md-12">
+                                                                    <form role="form" method="post" class="form-update-food">
+                                                                        <?php
+                                                                        $id = $food['id'];
+                                                                        $foodEdit = $database->getFoodById($id);
+                                                                        while ($selectedFood = mysqli_fetch_array($foodEdit)) {
+                                                                        ?>
+                                                                            <div class="form-group">
+                                                                                <label for="judul">Judul</label>
+                                                                                <input type="hidden" name="id" value="<?php echo $selectedFood['id'] ?>"/>
+                                                                                <input type="text" class="form-control" name="name" id="judul" aria-describedby="emailHelp" placeholder="Judul makanan" value="<?= $selectedFood['name'] ?>">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="control-label" for="company">Kategori</label>
+                                                                                <div class="">
+                                                                                    <select id="company" class="form-control" name="categoryId">
+                                                                                        <?php
+                                                                                        $categorys = $database->getFoodCategory();
+                                                                                        while ($category = mysqli_fetch_array($categorys)) {
+                                                                                        ?>
+                                                                                            <option value="<?= $category['id'] ?>" <?php if ($selectedFood['category_id'] == $category['id']) {
+                                                                                                                                        echo ("selected");
+                                                                                                                                    } ?>><?= $category['name'] ?></option>
+                                                                                        <?php
+                                                                                        }
+                                                                                        ?>
+                                                                                    </select>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="food-description">Deskripsi</label>
+                                                                                <textarea id="food-description" class="form-control" rows="3" name="description" ><?= $selectedFood['description'] ?></textarea>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="food-price">Harga</label>
+                                                                                <input type="number" class="form-control" name="price" id="food-price" placeholder="Rp. 100000" value="<?= $selectedFood['price'] ?>">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="food-total">Jumlah</label>
+                                                                                <input type="number" class="form-control" name="total" id="food-total" placeholder="Jumlah yang tersedia" value="<?= $selectedFood['total'] ?>">
+                                                                            </div>
+                                                                            <div class="form-group text-right m-b-0">
+                                                                                <button class="btn btn-primary waves-effect waves-light" onclick="updateFood()" type="submit">
+                                                                                    Update
+                                                                                </button>
+                                                                                <button type="reset" class="btn btn-secondary waves-effect waves-light m-l-5" data-dismiss="modal" aria-hidden="true">
+                                                                                    Batal
+                                                                                </button>
+                                                                            </div>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                    </form>
+
+                                                                </div>
+                                                            </div>
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div><!-- /.modal -->
 
                                             <?php } ?>
                                         </tbody>
@@ -429,10 +503,36 @@ $foods = $database->getFood();
                 },
                 error: function(xhr) {
                     swal(
-                            'Failed',
-                            'Gagal menghapus data!',
-                            'error'
-                        )
+                        'Failed',
+                        'Gagal menghapus data!',
+                        'error'
+                    )
+                }
+            });
+
+        };
+
+        function updateFood() {
+            var data = $('.form-update-food').serialize();
+            console.log(data);
+            $.ajax({
+                type: "POST",
+                url: "update.php",
+                data: data,
+
+                success: function(data) {
+                    swal(
+                        'Sukses!',
+                        'Berhasil mengubah Data.',
+                        'success'
+                    );
+                },
+                error: function(xhr) {
+                    swal(
+                        'Failed',
+                        'Gagal mengubah data!',
+                        'error'
+                    )
                 }
             });
 

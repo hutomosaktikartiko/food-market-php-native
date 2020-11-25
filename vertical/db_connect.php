@@ -51,6 +51,18 @@ class Database
         return $query;
     }
 
+    function getFoodById($foodId)
+    {
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food WHERE id = $foodId");
+        return $query;
+    }
+
+    function updateFood($id, $categoryId, $name, $description, $price, $total)
+    {
+        $query = mysqli_query($this->koneksi, "UPDATE tb_food SET category_id = '$categoryId', name = '$name', description = '$description', price = '$price', total = '$total' WHERE id = $id");
+        return $query;
+    }
+
     function getFoodCategory()
     {
         $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food_category");
