@@ -69,9 +69,15 @@ class Database
         return $query;
     }
 
+    function getFoodCategoryById($id)
+    {
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food_category WHERE id_food_category = $id");
+        return $query;
+    }
+
     function deleteCategory($categoryId)
     {
-        $query = mysqli_query($this->koneksi, "DELETE FROM tb_food WHERE id_food_category=$categoryId");
+        $query = mysqli_query($this->koneksi, "DELETE FROM tb_food_category WHERE id_food_category=$categoryId");
         return $query;
     }
 
@@ -81,7 +87,7 @@ class Database
         return $query;
     }
 
-    function editCategory($categoryId, $category)
+    function updateCategory($categoryId, $category)
     {
         $query = mysqli_query($this->koneksi, "UPDATE tb_food_category SET name_category = '$category' WHERE id_food_category = $categoryId");
         return $query;

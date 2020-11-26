@@ -2,13 +2,15 @@
 include_once('db_connect.php');
 $database = new database();
 
-$id = $_POST['id'];
-$delete = $_POST['delete'];
+$deleteItem = $_POST['delete_item'];
 
-if ($delete == "FOOD") {
-    $result = $database->deleteFood($id);
+if ($deleteItem == "FOOD-CATEGORY") {
+    $id = $_POST['id'];
+    $result = $database->deleteCategory($id);
 }
 else {
+    $id = $_POST['id'];
+    $delete = $_POST['delete'];
     $result = $database->deleteTransaction($id);
 }
 
