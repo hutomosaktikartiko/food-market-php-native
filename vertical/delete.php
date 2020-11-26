@@ -8,9 +8,13 @@ if ($deleteItem == "FOOD-CATEGORY") {
     $id = $_POST['id'];
     $result = $database->deleteCategory($id);
 }
-else {
+else if ($deleteItem == "FOOD"){
     $id = $_POST['id'];
-    $delete = $_POST['delete'];
+    $result = $database->deleteFood($id);
+}
+
+else if ($deleteItem == "TRANSACTION"){
+    $id = $_POST['id'];
     $result = $database->deleteTransaction($id);
 }
 

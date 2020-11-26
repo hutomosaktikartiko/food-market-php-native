@@ -324,7 +324,7 @@ $foods = $database->getFood();
                                                     <td><?= $food['price'] ?></td>
                                                     <td><?= $food['total'] ?></td>
                                                     <td>
-                                                        <a type="button" class="btn btn-light waves-effect waves-light btn-danger" id="deletetransaction" onclick="deleteFood(<?= $food['id_food'] ?>)"><i class="fa fa-remove"></i></a>
+                                                        <a type="button" class="btn btn-light waves-effect waves-light btn-danger" id="deletefood" onclick="deleteFood(<?= $food['id_food'] ?>)"><i class="fa fa-remove"></i></a>
                                                         <a type="button" class="btn btn-light waves-effect waves-light btn-warning" id="updatetransaction" data-toggle="modal" data-target="#bs-update-food-modal-lg<?= $food['id_food'] ?>"><i class="fa fa-edit"></i></a>
                                                     </td>
                                                 </tr>
@@ -468,7 +468,7 @@ $foods = $database->getFood();
                     url: "delete.php",
                     data: {
                         id: foodId,
-                        delete: "FOOD"
+                        delete_item: "FOOD"
                     },
 
 
