@@ -159,7 +159,7 @@ $transaction_total = mysqli_num_rows($transactions);
                             <ul class="list-unstyled">
                                 <li><a href="food.php">Food</a></li>
                                 <li><a href="chart-morris.html">Morris Chart</a></li>
-                                <li><a href="chart-chartist.html">Chartist Food</a></li>
+                                <li><a href="food_category.php">Food Category</a></li>
                                 <li><a href="chart-chartjs.html">Chartjs Chart</a></li>
                                 <li><a href="chart-other.html">Other Chart</a></li>
                             </ul>
