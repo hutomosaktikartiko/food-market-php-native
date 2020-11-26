@@ -259,15 +259,15 @@ $transaction_total = mysqli_num_rows($transactions);
                                             ?>
                                                 <tr>
                                                     <td><?= $number++; ?></td>
-                                                    <td><?= $transaction['food_id'] ?></td>
-                                                    <td><?= $transaction['user_id'] ?></td>
+                                                    <td><?= $transaction['name_food'] ?></td>
+                                                    <td><?= $transaction['name'] ?></td>
                                                     <td>01/01/2017</td>
-                                                    <td><?= $transaction['status_id'] ?></td>
-                                                    <td><?= $transaction['payment_id'] ?></td>
+                                                    <td><?= $transaction['status'] ?></td>
+                                                    <td><?= $transaction['payment'] ?></td>
                                                     <td><?= $transaction['total'] ?></td>
                                                     <td><?= $transaction['amount'] ?></td>
                                                     <td>
-                                                        <a type="button" class="btn btn-light waves-effect waves-light btn-danger" id="deletetransaction" onclick="deleteTransaction(<?= $transaction['id'] ?>)"><i class="fa fa-remove"></i></a>
+                                                        <a type="button" class="btn btn-light waves-effect waves-light btn-danger" id="deletetransaction" onclick="deleteTransaction(<?= $transaction['id_transaction'] ?>)"><i class="fa fa-remove"></i></a>
                                                     </td>
                                                 </tr>
 
