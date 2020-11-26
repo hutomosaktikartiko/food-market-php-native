@@ -325,7 +325,7 @@ $database = new database();
                                             <tr>
                                                 <th>#</th>
                                                 <th>Food</th>
-                                                <th>User</th>
+                                                <th>Pembeli</th>
                                                 <th>Waktu</th>
                                                 <th>Status</th>
                                                 <th>Pembayaran</th>
@@ -340,11 +340,11 @@ $database = new database();
                                             ?>
                                                 <tr>
                                                     <td><?= $number++; ?></td>
-                                                    <td><?= $transaction['food_id'] ?></td>
-                                                    <td><?= $transaction['user_id'] ?></td>
+                                                    <td><?= $transaction['name_food'] ?></td>
+                                                    <td><?= $transaction['name'] ?></td>
                                                     <td>01/01/2017</td>
-                                                    <td><?= $transaction['status_id'] ?></td>
-                                                    <td><?= $transaction['payment_id'] ?></td>
+                                                    <td><?= $transaction['status'] ?></td>
+                                                    <td><?= $transaction['payment'] ?></td>
                                                     <td><?= $transaction['total'] ?></td>
                                                     <td><?= $transaction['amount'] ?></td>
                                                 </tr>

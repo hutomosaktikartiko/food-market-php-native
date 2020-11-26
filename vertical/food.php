@@ -255,7 +255,7 @@ $foods = $database->getFood();
                                                                     $categorys = $database->getFoodCategory();
                                                                     while ($category = mysqli_fetch_array($categorys)) {
                                                                     ?>
-                                                                        <option value="<?= $category['id'] ?>"><?= $category['name_category'] ?></option>
+                                                                        <option value="<?= $category['id_food_category'] ?>"><?= $category['name_category'] ?></option>
                                                                     <?php
                                                                     }
                                                                     ?>
@@ -318,19 +318,19 @@ $foods = $database->getFood();
                                             ?>
                                                 <tr>
                                                     <td><?= $number++; ?></td>
-                                                    <td><?= $food['name'] ?></td>
+                                                    <td><?= $food['name_food'] ?></td>
                                                     <td><?= $food['name_category'] ?></td>
                                                     <td><?= $food['description'] ?></td>
                                                     <td><?= $food['price'] ?></td>
                                                     <td><?= $food['total'] ?></td>
                                                     <td>
-                                                        <a type="button" class="btn btn-light waves-effect waves-light btn-danger" id="deletetransaction" onclick="deleteFood(<?= $food['id'] ?>)"><i class="fa fa-remove"></i></a>
-                                                        <a type="button" class="btn btn-light waves-effect waves-light btn-warning" id="updatetransaction" data-toggle="modal" data-target="#bs-update-food-modal-lg<?= $food['id'] ?>"><i class="fa fa-edit"></i></a>
+                                                        <a type="button" class="btn btn-light waves-effect waves-light btn-danger" id="deletetransaction" onclick="deleteFood(<?= $food['id_food'] ?>)"><i class="fa fa-remove"></i></a>
+                                                        <a type="button" class="btn btn-light waves-effect waves-light btn-warning" id="updatetransaction" data-toggle="modal" data-target="#bs-update-food-modal-lg<?= $food['id_food'] ?>"><i class="fa fa-edit"></i></a>
                                                     </td>
                                                 </tr>
 
                                                 <!--  Modal content for the above example -->
-                                                <div class="modal fade " id="bs-update-food-modal-lg<?= $food['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                                                <div class="modal fade " id="bs-update-food-modal-lg<?= $food['id_food'] ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
                                                     <div class="modal-dialog modal-lg">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -341,14 +341,14 @@ $foods = $database->getFood();
                                                                 <div class="col-md-12">
                                                                     <form role="form" method="post" class="form-update-food">
                                                                         <?php
-                                                                        $id = $food['id'];
+                                                                        $id = $food['id_food'];
                                                                         $foodEdit = $database->getFoodById($id);
                                                                         while ($selectedFood = mysqli_fetch_array($foodEdit)) {
                                                                         ?>
                                                                             <div class="form-group">
                                                                                 <label for="judul">Judul</label>
-                                                                                <input type="hidden" name="id" value="<?php echo $selectedFood['id'] ?>" />
-                                                                                <input type="text" class="form-control" name="name" id="judul" aria-describedby="emailHelp" placeholder="Judul makanan" value="<?= $selectedFood['name'] ?>">
+                                                                                <input type="hidden" name="id" value="<?php echo $selectedFood['id_food'] ?>" />
+                                                                                <input type="text" class="form-control" name="name" id="judul" aria-describedby="emailHelp" placeholder="Judul makanan" value="<?= $selectedFood['name_food'] ?>">
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label class="control-label" for="company">Kategori</label>
@@ -358,7 +358,7 @@ $foods = $database->getFood();
                                                                                         $categorys = $database->getFoodCategory();
                                                                                         while ($category = mysqli_fetch_array($categorys)) {
                                                                                         ?>
-                                                                                            <option value="<?= $category['id'] ?>" <?php if ($selectedFood['category_id'] == $category['id']) {
+                                                                                            <option value="<?= $category['id_food_category'] ?>" <?php if ($selectedFood['category_id'] == $category['id_food_category']) {
                                                                                                                                         echo ("selected");
                                                                                                                                     } ?>><?= $category['name_category'] ?></option>
                                                                                         <?php
