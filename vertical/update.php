@@ -10,6 +10,6 @@ $description = $_POST['description'];
 $price = $_POST['price'];
 $total = $_POST['total'];
 
-$result = $database->updateFood($id, $categoryId, $name, $description, $total, $price);
+$result = $database->updateFood($id, $categoryId, $name, $description, $price, $total);
 echo($result);
 ?>

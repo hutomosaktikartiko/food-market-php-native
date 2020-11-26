@@ -251,9 +251,14 @@ $foods = $database->getFood();
                                                             <label class="control-label" for="company">Kategori</label>
                                                             <div class="">
                                                                 <select id="company" class="form-control" name="categoryId">
-                                                                    <option value="1">Makanan Kaleng</option>
-                                                                    <option value="2">Makanan Ringan</option>
-                                                                    <!-- <option value="3">3</option> -->
+                                                                    <?php
+                                                                    $categorys = $database->getFoodCategory();
+                                                                    while ($category = mysqli_fetch_array($categorys)) {
+                                                                    ?>
+                                                                        <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -263,7 +268,7 @@ $foods = $database->getFood();
                                                         </div> -->
                                                         <div class="form-group">
                                                             <label for="food-description">Deskripsi</label>
-                                                            <input type="text" class="form-control" name="description" id="food-description" placeholder="Deskripsi makanan">
+                                                            <textarea id="food-description" class="form-control" rows="3" name="description"></textarea>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="food-price">Harga</label>
@@ -342,7 +347,7 @@ $foods = $database->getFood();
                                                                         ?>
                                                                             <div class="form-group">
                                                                                 <label for="judul">Judul</label>
-                                                                                <input type="hidden" name="id" value="<?php echo $selectedFood['id'] ?>"/>
+                                                                                <input type="hidden" name="id" value="<?php echo $selectedFood['id'] ?>" />
                                                                                 <input type="text" class="form-control" name="name" id="judul" aria-describedby="emailHelp" placeholder="Judul makanan" value="<?= $selectedFood['name'] ?>">
                                                                             </div>
                                                                             <div class="form-group">
@@ -365,7 +370,7 @@ $foods = $database->getFood();
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label for="food-description">Deskripsi</label>
-                                                                                <textarea id="food-description" class="form-control" rows="3" name="description" ><?= $selectedFood['description'] ?></textarea>
+                                                                                <textarea id="food-description" class="form-control" rows="3" name="description"><?= $selectedFood['description'] ?></textarea>
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label for="food-price">Harga</label>
