@@ -337,7 +337,7 @@ $transaction_total = mysqli_num_rows($transactions);
                 $.ajax({
                     type: "POST",
                     url: "delete.php",
-                    data: {id:tableId},
+                    data: {id:tableId, delete_item: "TRANSACTION"},
                     
                     success: function(data) {
                         swal(
