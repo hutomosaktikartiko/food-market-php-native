@@ -47,7 +47,7 @@ class Database
 
     function getFood()
     {
-        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food");
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food, tb_food_category WHERE tb_food.category_id = tb_food_category.id");
         return $query;
     }
 

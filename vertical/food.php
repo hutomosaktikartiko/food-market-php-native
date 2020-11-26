@@ -255,7 +255,7 @@ $foods = $database->getFood();
                                                                     $categorys = $database->getFoodCategory();
                                                                     while ($category = mysqli_fetch_array($categorys)) {
                                                                     ?>
-                                                                        <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+                                                                        <option value="<?= $category['id'] ?>"><?= $category['name_category'] ?></option>
                                                                     <?php
                                                                     }
                                                                     ?>
@@ -319,7 +319,7 @@ $foods = $database->getFood();
                                                 <tr>
                                                     <td><?= $number++; ?></td>
                                                     <td><?= $food['name'] ?></td>
-                                                    <td><?= $food['category_id'] ?></td>
+                                                    <td><?= $food['name_category'] ?></td>
                                                     <td><?= $food['description'] ?></td>
                                                     <td><?= $food['price'] ?></td>
                                                     <td><?= $food['total'] ?></td>
@@ -360,7 +360,7 @@ $foods = $database->getFood();
                                                                                         ?>
                                                                                             <option value="<?= $category['id'] ?>" <?php if ($selectedFood['category_id'] == $category['id']) {
                                                                                                                                         echo ("selected");
-                                                                                                                                    } ?>><?= $category['name'] ?></option>
+                                                                                                                                    } ?>><?= $category['name_category'] ?></option>
                                                                                         <?php
                                                                                         }
                                                                                         ?>
