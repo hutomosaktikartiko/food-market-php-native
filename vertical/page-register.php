@@ -8,7 +8,8 @@ if (isset($_POST['registeruser'])) {
     $roles = $_POST['roles'];
     $address = $_POST['address'];
     $phone_number = $_POST['phone_number'];
-    if ($database->register($name, $email, $password, $roles, $address, $phone_number)) {
+    $image = $_FILES['image'];
+    if ($database->register($name, $email, $password, $roles, $address, $phone_number, $image)) {
         header('location:page-login.php');
     }
 }
@@ -51,7 +52,7 @@ if (isset($_POST['registeruser'])) {
                 <h4 class="text-uppercase font-bold m-b-0">Register</h4>
             </div>
             <div class="p-20">
-                <form form method="post" action="" class="form-horizontal m-t-20">
+                <form form method="post" action="" class="form-horizontal m-t-20" enctype="multipart/form-data">
 
                     <div class="form-group ">
                         <div class="col-xs-12">
@@ -86,6 +87,11 @@ if (isset($_POST['registeruser'])) {
                     <div class="form-group ">
                         <div class="col-xs-12">
                             <input class="form-control" type="text" required="" placeholder="Phone" name="phone_number">
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="file" required="" placeholder="Gambar profile" name="image">
                         </div>
                     </div>
 

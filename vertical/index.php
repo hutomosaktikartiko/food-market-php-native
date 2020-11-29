@@ -106,7 +106,7 @@ $database = new database();
                 <!-- User -->
                 <div class="user-box">
                     <div class="user-img">
-                        <img src="assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail img-responsive">
+                        <img src="assets/images/database/<?= $_SESSION['image']; ?>" alt="user-img" title="<?= $_SESSION['name']; ?>" class="rounded-circle img-thumbnail img-responsive">
                         <div class="user-status offline"><i class="mdi mdi-adjust"></i></div>
                     </div>
                     <h5><a href="#"><?= $_SESSION['name']; ?></a> </h5>

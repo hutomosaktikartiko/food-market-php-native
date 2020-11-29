@@ -13,9 +13,17 @@ class Database
         $this->koneksi = mysqli_connect($this->databaseHost, $this->databaseUsername, $this->databasePassword, $this->databaseName);
     }
 
-    function register($name, $email,  $password, $roles, $address, $phone_number)
+    function register($name, $email,  $password, $roles, $address, $phone_number, $image)
     {
-        $insert = mysqli_query($this->koneksi, "insert into tb_users values ('','$name', '$email','$password', '$roles', '$address', '$phone_number', '')");
+        //Upload image
+        $image = $this->upload();
+        if(!$image)
+        {
+            return false;
+        }
+
+
+        $insert = mysqli_query($this->koneksi, "insert into tb_users values ('','$name', '$email','$password', '$roles', '$address', '$phone_number', '$image')");
         return $insert;
     }
 
@@ -28,9 +36,11 @@ class Database
             if ($remember) {
                 setcookie('email', $email, time() + (60 * 60 * 24 * 5), '/');
                 setcookie('name', $data_user['name'], time() + (60 * 60 * 24 * 5), '/');
+                setcookie('image', $data_user['image'], time() + (60 * 60 * 24 * 5), '/');
             }
             $_SESSION['email'] = $email;
             $_SESSION['name'] = $data_user['name'];
+            $_SESSION['image'] = $data_user['picture_path'];
             $_SESSION['is_login'] = TRUE;
             return TRUE;
         }
@@ -38,10 +48,11 @@ class Database
 
     function relogin($email)
     {
-        $query = mysqli_query($this->koneksi, "select * from tb_users where username='$email'");
+        $query = mysqli_query($this->koneksi, "select * from tb_users where email='$email'");
         $data_user = $query->fetch_array();
         $_SESSION['email'] = $email;
         $_SESSION['name'] = $data_user['name'];
+        $_SESSION['image'] = $data_user['picture_path'];
         $_SESSION['is_login'] = TRUE;
     }
 
@@ -121,6 +132,56 @@ class Database
     {
         $query = mysqli_query($this->koneksi, "INSERT INTO tb_food (id_food, category_id, name_food, description, price, total) VALUES ('', '$categoryId', '$name', '$description', '$price', '$total')");
         return $query;
+    }
+
+    function upload()
+    {
+        $fileName = $_FILES['image']['name'];
+        $fileSize = $_FILES['image']['size'];
+        $fileError = $_FILES['image']['errror'];
+        $fileTmpName = $_FILES['image']['tmp_name'];
+
+        //Tidak ada gambar
+        if($fileError === 4) {
+            echo "<script>
+                alert('Pilih gambar terlebih dahulu');
+                </script>";
+
+            return false;
+        }
+
+        //cek file upload
+        $extensionImageValid = ['jpg', 'jpeg', 'png'];
+        $extensionImage = explode('.', $fileName);
+        $extensionImage = strtolower(end($extensionImage));
+        if(!in_array($extensionImage, $extensionImageValid)) {
+            echo "<script>
+                alert('yang anda upload bukan gambar');
+                </script>";
+
+            return false;
+        }
+
+        //file size
+        if ($fileSize > 1000000) {
+            echo "<script>
+                alert('Ukuran gambar terlalu besar');
+                </script>";
+            
+            return false;
+        }
+
+        //File New Name
+        $fileNameNew = uniqid();
+        $fileNameNew .= ".";
+        $fileNameNew .= $extensionImage;
+
+
+        //Upload Image
+        move_uploaded_file($fileTmpName, 'assets/images/database/' . $fileNameNew);
+
+        return $fileNameNew;
+
     }
     
 }
