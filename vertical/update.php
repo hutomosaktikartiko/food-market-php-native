@@ -10,15 +10,16 @@ if ($updateItem == "FOOD-CATEGORY") {
     $category = $_POST['category'];
 
     $result = $database->updateCategory($id, $category);
-} else {
+} else if ($updateItem == "FOOD") {
     $id = $_POST['id'];
     $name = $_POST['name'];
     $categoryId = $_POST['categoryId'];
     $description = $_POST['description'];
     $price = $_POST['price'];
     $total = $_POST['total'];
+    $lastImage = $_POST['lastImage'];
+    $image = $_FILES['image'];
 
-    $result = $database->updateFood($id, $categoryId, $name, $description, $price, $total);
-
+    $result = $database->updateFood($id, $categoryId, $name, $description, $price, $total, $image, $lastImage);
 }
 ?>

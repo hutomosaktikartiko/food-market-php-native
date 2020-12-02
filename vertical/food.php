@@ -4,6 +4,28 @@ $database = new database();
 
 $foods = $database->getFood();
 
+if (isset($_POST['submit-update'])) {
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $categoryId = $_POST['categoryId'];
+    $description = $_POST['description'];
+    $price = $_POST['price'];
+    $total = $_POST['total'];
+    $lastImage = $_POST['lastImage'];
+    $image = $_FILES['image'];
+    $result = $database->updateFood($id, $categoryId, $name, $description, $price, $total, $image, $lastImage);
+}
+
+if (isset($_POST['submit-add'])) {
+    $categoryId = $_POST['categoryId'];
+    $name = $_POST['name'];
+    $description = $_POST['description'];
+    $price = $_POST['price'];
+    $total = $_POST['total'];
+
+    $result = $database->addFood($categoryId, $name, $description, $price, $total, $_FILES['image']);
+}
+
 ?>
 
 
@@ -242,9 +264,10 @@ $foods = $database->getFood();
                                             </div>
                                             <div class="modal-body">
                                                 <div class="col-md-12">
-                                                    <form role="form" method="post" class="form-add-food">
+                                                    <form role="form" method="post" class="form-add-food" enctype="multipart/form-data">
                                                         <div class="form-group">
                                                             <label for="judul">Judul</label>
+                                                            <input type="hidden" name="add-item" value="FOOD" />
                                                             <input type="text" class="form-control" name="name" id="judul" aria-describedby="emailHelp" placeholder="Judul makanan">
                                                         </div>
                                                         <div class="form-group">
@@ -278,8 +301,12 @@ $foods = $database->getFood();
                                                             <label for="food-total">Jumlah</label>
                                                             <input type="number" class="form-control" name="total" id="food-total" placeholder="Jumlah yang tersedia">
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label for="new-image">Gambar Food</label>
+                                                            <input type="file" class="form-control" name="image" id="new-image" placeholder="Gambar baru" require>
+                                                        </div>
                                                         <div class="form-group text-right m-b-0">
-                                                            <button class="btn btn-primary waves-effect waves-light" onclick="addFood()" type="submit">
+                                                            <button class="btn btn-primary waves-effect waves-light" name="submit-add" type="submit">
                                                                 Tambah
                                                             </button>
                                                             <button type="reset" class="btn btn-secondary waves-effect waves-light m-l-5" data-dismiss="modal" aria-hidden="true">
@@ -308,6 +335,7 @@ $foods = $database->getFood();
                                                 <th>Deskripsi</th>
                                                 <th>Harga</th>
                                                 <th>Jumlah</th>
+                                                <th>Foto</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -324,6 +352,11 @@ $foods = $database->getFood();
                                                     <td><?= $food['price'] ?></td>
                                                     <td><?= $food['total'] ?></td>
                                                     <td>
+                                                        <div class="card m-b-20">
+                                                            <img class="card-img-top img-fluid" src="assets/images/database/<?php echo $food['picture_path'] ?>" alt="Card image cap">
+                                                        </div>
+                                                    </td>
+                                                    <td>
                                                         <a type="button" class="btn btn-light waves-effect waves-light btn-danger" id="deletefood" onclick="deleteFood(<?= $food['id_food'] ?>)"><i class="fa fa-remove"></i></a>
                                                         <a type="button" class="btn btn-light waves-effect waves-light btn-warning" id="updatetransaction" data-toggle="modal" data-target="#bs-update-food-modal-lg<?= $food['id_food'] ?>"><i class="fa fa-edit"></i></a>
                                                     </td>
@@ -339,7 +372,7 @@ $foods = $database->getFood();
                                                             </div>
                                                             <div class="modal-body">
                                                                 <div class="col-md-12">
-                                                                    <form role="form" method="post" class="form-update-food">
+                                                                    <form role="form" method="post" class="form-update-food" enctype="multipart/form-data">
                                                                         <?php
                                                                         $id = $food['id_food'];
                                                                         $foodEdit = $database->getFoodById($id);
@@ -347,7 +380,9 @@ $foods = $database->getFood();
                                                                         ?>
                                                                             <div class="form-group">
                                                                                 <label for="judul">Judul</label>
+                                                                                <input type="hidden" name="update-item" value="FOOD" />
                                                                                 <input type="hidden" name="id" value="<?php echo $selectedFood['id_food'] ?>" />
+                                                                                <input type="hidden" name="lastImage" value="<?php echo $selectedFood['picture_path'] ?>" />
                                                                                 <input type="text" class="form-control" name="name" id="judul" aria-describedby="emailHelp" placeholder="Judul makanan" value="<?= $selectedFood['name_food'] ?>">
                                                                             </div>
                                                                             <div class="form-group">
@@ -359,8 +394,8 @@ $foods = $database->getFood();
                                                                                         while ($category = mysqli_fetch_array($categorys)) {
                                                                                         ?>
                                                                                             <option value="<?= $category['id_food_category'] ?>" <?php if ($selectedFood['category_id'] == $category['id_food_category']) {
-                                                                                                                                        echo ("selected");
-                                                                                                                                    } ?>><?= $category['name_category'] ?></option>
+                                                                                                                                                        echo ("selected");
+                                                                                                                                                    } ?>><?= $category['name_category'] ?></option>
                                                                                         <?php
                                                                                         }
                                                                                         ?>
@@ -380,8 +415,15 @@ $foods = $database->getFood();
                                                                                 <label for="food-total">Jumlah</label>
                                                                                 <input type="number" class="form-control" name="total" id="food-total" placeholder="Jumlah yang tersedia" value="<?= $selectedFood['total'] ?>">
                                                                             </div>
+                                                                            <div class="card m-b-20">
+                                                                                <img class="card-img-top img-fluid" src="assets/images/database/<?= $selectedFood['picture_path'] ?>" alt="Card image cap">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="new-image">Gambar baru</label>
+                                                                                <input type="file" class="form-control" name="image" id="new-image" placeholder="Gambar baru" require>
+                                                                            </div>
                                                                             <div class="form-group text-right m-b-0">
-                                                                                <button class="btn btn-primary waves-effect waves-light" onclick="updateFood()" type="submit">
+                                                                                <button class="btn btn-primary waves-effect waves-light" type="submit" name="submit-update">
                                                                                     Update
                                                                                 </button>
                                                                                 <button type="reset" class="btn btn-secondary waves-effect waves-light m-l-5" data-dismiss="modal" aria-hidden="true">

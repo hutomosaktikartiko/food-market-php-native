@@ -17,8 +17,7 @@ class Database
     {
         //Upload image
         $image = $this->upload();
-        if(!$image)
-        {
+        if (!$image) {
             return false;
         }
 
@@ -68,9 +67,16 @@ class Database
         return $query;
     }
 
-    function updateFood($id, $categoryId, $name, $description, $price, $total)
+    function updateFood($id, $categoryId, $name, $description, $price, $total, $image, $lastImage)
     {
-        $query = mysqli_query($this->koneksi, "UPDATE tb_food SET category_id = '$categoryId', name_food = '$name', description = '$description', price = '$price', total = '$total' WHERE id_food = $id");
+        // cek apakah user pilih gambar baru atau tidak
+        if ($image['error'] === 4) {
+            $image = $lastImage;
+        } else {
+            $image = $this->upload();
+        }
+        // $image = $this->upload();
+        $query = mysqli_query($this->koneksi, "UPDATE tb_food SET category_id = '$categoryId', name_food = '$name', description = '$description', price = '$price', total = '$total', picture_path = '$image' WHERE id_food = $id");
         return $query;
     }
 
@@ -128,9 +134,13 @@ class Database
         return $query;
     }
 
-    function addFood($categoryId, $name, $description, $price, $total)
+    function addFood($categoryId, $name, $description, $price, $total, $image)
     {
-        $query = mysqli_query($this->koneksi, "INSERT INTO tb_food (id_food, category_id, name_food, description, price, total) VALUES ('', '$categoryId', '$name', '$description', '$price', '$total')");
+        $image = $this->upload();
+        if (!$image) {
+            return false;
+        }
+        $query = mysqli_query($this->koneksi, "INSERT INTO tb_food VALUES ('', '$categoryId', '$name', '$description', '$price', '$total', '$image')");
         return $query;
     }
 
@@ -138,11 +148,11 @@ class Database
     {
         $fileName = $_FILES['image']['name'];
         $fileSize = $_FILES['image']['size'];
-        $fileError = $_FILES['image']['errror'];
+        $fileError = $_FILES['image']['error'];
         $fileTmpName = $_FILES['image']['tmp_name'];
 
         //Tidak ada gambar
-        if($fileError === 4) {
+        if ($fileError === 4) {
             echo "<script>
                 alert('Pilih gambar terlebih dahulu');
                 </script>";
@@ -154,7 +164,7 @@ class Database
         $extensionImageValid = ['jpg', 'jpeg', 'png'];
         $extensionImage = explode('.', $fileName);
         $extensionImage = strtolower(end($extensionImage));
-        if(!in_array($extensionImage, $extensionImageValid)) {
+        if (!in_array($extensionImage, $extensionImageValid)) {
             echo "<script>
                 alert('yang anda upload bukan gambar');
                 </script>";
@@ -167,7 +177,7 @@ class Database
             echo "<script>
                 alert('Ukuran gambar terlalu besar');
                 </script>";
-            
+
             return false;
         }
 
@@ -181,7 +191,5 @@ class Database
         move_uploaded_file($fileTmpName, 'assets/images/database/' . $fileNameNew);
 
         return $fileNameNew;
-
     }
-    
 }
