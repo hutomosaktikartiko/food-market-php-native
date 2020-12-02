@@ -67,16 +67,31 @@ class Database
         return $query;
     }
 
+    function getUserById($userId)
+    {
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_users WHERE id = $userId");
+        return $query;
+    }
+
     function updateFood($id, $categoryId, $name, $description, $price, $total, $image, $lastImage)
     {
-        // cek apakah user pilih gambar baru atau tidak
         if ($image['error'] === 4) {
             $image = $lastImage;
         } else {
             $image = $this->upload();
         }
-        // $image = $this->upload();
         $query = mysqli_query($this->koneksi, "UPDATE tb_food SET category_id = '$categoryId', name_food = '$name', description = '$description', price = '$price', total = '$total', picture_path = '$image' WHERE id_food = $id");
+        return $query;
+    }
+
+    function updateUser($id, $name, $email, $address, $phone_number, $image, $lastImage)
+    {
+        if ($image['error'] === 4) {
+            $image = $lastImage;
+        } else {
+            $image = $this->upload();
+        }
+        $query = mysqli_query($this->koneksi, "UPDATE tb_users SET name = '$name', email = '$email', address = '$address', phone_number = '$phone_number', picture_path = '$image' WHERE id = $id");
         return $query;
     }
 
@@ -118,13 +133,19 @@ class Database
 
     function getUser()
     {
-        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_users");
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_users WHERE roles = 'USER'");
         return $query;
     }
 
     function deleteTransaction($transactionId)
     {
         $query = mysqli_query($this->koneksi, "DELETE FROM tb_transactions WHERE id_transaction=$transactionId");
+        return $query;
+    }
+
+    function deleteUser($userId)
+    {
+        $query = mysqli_query($this->koneksi, "DELETE FROM tb_users WHERE id=$userId");
         return $query;
     }
 

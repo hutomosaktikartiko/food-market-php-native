@@ -2630,7 +2630,7 @@ File: Pages
 /* =============
   == Pages List==
 
-   - Calendar
+   - users
    - Form Elements
    - Notification
    - Range slider
@@ -2652,9 +2652,9 @@ File: Pages
 
 ============= */
 /* =============
-   Calendar
+   users
 ============= */
-.calendar {
+.users {
   float: left;
   margin-bottom: 0px;
 }

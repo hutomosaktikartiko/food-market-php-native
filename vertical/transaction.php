@@ -166,7 +166,7 @@ $transaction_total = mysqli_num_rows($transactions);
                         </li>
 
                         <li>
-                            <a href="calendar.html" class="waves-effect"><i class="mdi mdi-calendar"></i><span> Calendar </span></a>
+                            <a href="users.php" class="waves-effect"><i class="mdi mdi-users"></i><span> users </span></a>
                         </li>
 
                         <li>

@@ -18,3 +18,8 @@ else if ($deleteItem == "TRANSACTION"){
     $result = $database->deleteTransaction($id);
 }
 
+else if ($deleteItem == "USER"){
+    $id = $_POST['id'];
+    $result = $database->deleteUser($id);
+}
+
