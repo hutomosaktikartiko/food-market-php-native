@@ -1,5 +1,12 @@
 
 <?php
+
+session_start();
+if(!($_SESSION['is_login']))
+{
+    header('location:page-login.php');
+}
+
 include_once('db_connect.php');
 $database = new database();
 

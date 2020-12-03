@@ -2,6 +2,12 @@
 include_once('db_connect.php');
 $database = new database();
 
+session_start();
+if(!($_SESSION['is_login']))
+{
+    header('location:page-login.php');
+}
+
 $transactions = $database->getTransactions();
 $transaction_total = mysqli_num_rows($transactions);
 
