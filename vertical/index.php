@@ -53,7 +53,7 @@ $database = new database();
 
             <!-- LOGO -->
             <div class="topbar-left">
-                <a href="index.php" class="logo"><span>Admin<span>to</span></span><i class="mdi mdi-layers"></i></a>
+                <a href="index.php" class="logo"><span>Food<span>Market</span></span><i class="mdi mdi-layers"></i></a>
             </div>
 
             <!-- Button mobile view to collapse sidebar menu -->
@@ -84,7 +84,6 @@ $database = new database();
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <!-- item-->
                                         <a href="logout.php" class="dropdown-item" id="sa-warning">Log Out</a>
-                                        <!-- <button type="button" class="btn btn-light waves-effect waves-light btn-sm" id="sa-warning">Click me</button> -->
                                     </div>
                                 </div>
                             </li>
@@ -286,24 +285,6 @@ $database = new database();
     </div>
     <!-- END wrapper -->
 
-    <script>
-        //Warning Message
-        $('#logout-alert').click(function () {
-            swal({
-                title: 'Apakah kamu yakin ingin keluar?',
-                text: "Anda harus login ulang untuk mengakses halaman ini!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#4fa7f3',
-                cancelButtonColor: '#d57171',
-                confirmButtonText: 'Yes, delete it!'
-            }).then(function () {
-                logout.php;
-            })
-        });
-    </script>
-
-
     <!-- jQuery  -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
@@ -315,19 +296,6 @@ $database = new database();
     <script src="assets/js/jquery.nicescroll.js"></script>
     <script src="assets/js/jquery.slimscroll.js"></script>
     <script src="assets/js/jquery.scrollTo.min.js"></script>
-
-    <!-- KNOB JS -->
-    <!--[if IE]>
-        <script type="text/javascript" src="assets/plugins/jquery-knob/excanvas.js"></script>
-        <![endif]-->
-    <script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
-
-    <!--Morris Chart-->
-    <script src="assets/plugins/morris/morris.min.js"></script>
-    <script src="assets/plugins/raphael/raphael-min.js"></script>
-
-    <!-- Dashboard init -->
-    <script src="assets/pages/jquery.dashboard.js"></script>
 
     <!-- App js -->
     <script src="assets/js/jquery.core.js"></script>
