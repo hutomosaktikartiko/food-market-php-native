@@ -137,6 +137,36 @@ class Database
         return $query;
     }
 
+    function getPayment()
+    {
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_payment");
+        return $query;
+    }
+
+    function deletePayment($paymentId)
+    {
+        $query = mysqli_query($this->koneksi, "DELETE FROM tb_payment WHERE id_payment=$paymentId");
+        return $query;
+    }
+
+    function getPaymentById($paymentId)
+    {
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_payment WHERE id_payment = $paymentId");
+        return $query;
+    }
+
+    function updatePayment($id, $payment, $account_number, $account_name)
+    {
+        $query = mysqli_query($this->koneksi, "UPDATE tb_payment SET payment = '$payment', account_number = '$account_number', account_name = '$account_name' WHERE id_payment = $id");
+        return $query;
+    }
+
+    function addPayment($payment, $account_number, $account_name)
+    {
+        $query = mysqli_query($this->koneksi, "INSERT INTO tb_payment VALUES ('', '$payment', '$account_number', '$account_name')");
+        return $query;
+    }
+
     function deleteTransaction($transactionId)
     {
         $query = mysqli_query($this->koneksi, "DELETE FROM tb_transactions WHERE id_transaction=$transactionId");

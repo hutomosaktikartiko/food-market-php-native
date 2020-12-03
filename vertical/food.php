@@ -192,7 +192,7 @@ if (isset($_POST['submit-add'])) {
                         </li>
 
                         <li>
-                            <a href="inbox.html" class="waves-effect"><i class="mdi mdi-email"></i><span class="badge badge-purple pull-right">New</span><span> Mail </span></a>
+                            <a href="payment.php" class="waves-effect"><i class="mdi mdi-email"></i><span class="badge badge-purple pull-right">New</span><span> Mail </span></a>
                         </li>
 
                         <li class="has_sub">
@@ -351,9 +351,9 @@ if (isset($_POST['submit-add'])) {
                                                     <td><?= $food['description'] ?></td>
                                                     <td><?= $food['price'] ?></td>
                                                     <td><?= $food['total'] ?></td>
-                                                    <td>
+                                                    <td class="w-25">
                                                         <div class="card m-b-20">
-                                                            <img class="card-img-top img-fluid" src="assets/images/database/<?php echo $food['picture_path'] ?>" alt="Card image cap">
+                                                            <img class="card-img-top img-fluid img-thumbnail" src="assets/images/database/<?php echo $food['picture_path'] ?>" alt="Card image cap">
                                                         </div>
                                                     </td>
                                                     <td>

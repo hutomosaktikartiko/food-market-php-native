@@ -21,5 +21,12 @@ if ($updateItem == "FOOD-CATEGORY") {
     $image = $_FILES['image'];
 
     $result = $database->updateFood($id, $categoryId, $name, $description, $price, $total, $image, $lastImage);
+} else if ($updateItem == "PAYMENT") {
+    $id = $_POST['id_payment'];
+    $payment = $_POST['payment'];
+    $account_number = $_POST['account_number'];
+    $account_name = $_POST['account_name'];
+
+    $result = $database->updatePayment($id, $payment, $account_number, $account_name);
 }
 ?>

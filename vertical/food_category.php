@@ -173,7 +173,7 @@ $categorys = $database->getFoodCategory();
                         </li>
 
                         <li>
-                            <a href="inbox.html" class="waves-effect"><i class="mdi mdi-email"></i><span class="badge badge-purple pull-right">New</span><span> Mail </span></a>
+                            <a href="payment.php" class="waves-effect"><i class="mdi mdi-email"></i><span class="badge badge-purple pull-right">New</span><span> Mail </span></a>
                         </li>
 
                         <li class="has_sub">

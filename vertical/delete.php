@@ -23,3 +23,8 @@ else if ($deleteItem == "USER"){
     $result = $database->deleteUser($id);
 }
 
+else if ($deleteItem == "PAYMENT"){
+    $id = $_POST['id'];
+    $result = $database->deletePayment($id);
+}
+
