@@ -91,27 +91,14 @@ if (isset($_POST['submit-update'])) {
                 <div class="sidebar-inner slimscrollleft">
 
                     <!-- User -->
-                    <div class="user-box">
-                        <div class="user-img">
-                            <img src="assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail img-responsive">
-                            <div class="user-status offline"><i class="mdi mdi-adjust"></i></div>
-                        </div>
-                        <h5><a href="#">Mat Helme</a> </h5>
-                        <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <a href="#" >
-                                    <i class="mdi mdi-settings"></i>
-                                </a>
-                            </li>
-
-                            <li class="list-inline-item">
-                                <a href="#" class="text-custom">
-                                    <i class="mdi mdi-power"></i>
-                                </a>
-                            </li>
-                        </ul>
+                <div class="user-box">
+                    <div class="user-img">
+                        <img src="assets/images/database/<?= $_SESSION['image']; ?>" alt="user-img" title="<?= $_SESSION['name']; ?>" class="rounded-circle img-thumbnail img-responsive">
                     </div>
-                    <!-- End User -->
+                    <h5><a href="#"><?= $_SESSION['name']; ?></a> </h5>
+
+                </div>
+                <!-- End User -->
 
                     <!--- Sidemenu -->
                     <div id="sidebar-menu">
