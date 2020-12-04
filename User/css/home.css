@@ -1,0 +1,91 @@
+* {
+    font-family: 'Assistant', sans-serif;
+}
+nav.navbarUtama{
+    box-shadow: 0 .5rem 1rem -.4rem rgba(0,0,0,.15)!important;
+}
+.pembatas {
+    border-left: 2px solid black;
+}
+img.d-block {
+    filter: contrast(40%);
+}
+div.footer p {
+    margin-bottom: -2px;
+    padding: 0;
+}
+div.card {
+    border: none;
+}
+div.card-columns div.card:hover {
+    border: 1px solid #2E90FF;
+}
+div.card h5 {
+    font-size: 15px;
+    color: black;
+}
+div.web-developer img{
+    filter: contrast(5%);
+}
+div.container div.web-developer .card:hover{
+    border: none;
+    filter: contrast(1000%);
+}
+div.web-developer div.card h2 {
+    color: white;
+    line-height: 100px;
+}
+a.nav-link:hover, a.navbar-brand2:hover{
+    border-bottom: 2px solid #2E90FF;
+    padding-bottom: 2px;
+}
+a.navbar-brand2 {
+    border-bottom: 2px solid #2E90FF;
+    padding-bottom: 2px;
+}
+@media screen and (max-width:940px) {
+    a.awal {
+        font-size: 15px;
+    }
+    a.keranjang {
+        margin-left: -20px;
+    }
+}
+@media screen and (max-width:920px){
+    div.judul h4 {
+        font-size: 20px;
+    }
+} 
+@media screen and (max-width:810px) {
+    a.awal {
+        font-size: 10px;
+    }
+    div.header form input, div.header form button {
+        height: 30px;
+    }
+}
+@media screen and (max-width:730px) {
+    a.daftar, i.pembatas {
+        display: none;
+    }
+    div.judul h4 {
+        font-size: 15px;
+    }
+    div.header form input, div.header form button {
+        height: 30px;
+    }
+    div.footer h5 {
+        font-size: 15px;
+    }
+    div.footer p {
+        font-size: 13px;
+    }
+    div.card-img-overlay h2 {
+        font-size: 23px;
+    }
+}
+@media screen and (max-width:576px) {
+    a.awal, i.pembatas, .keranjang {
+        display: none;
+    }
+}

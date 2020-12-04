@@ -1,0 +1,3 @@
+function tambahkan(){
+    alert("alert");
+}

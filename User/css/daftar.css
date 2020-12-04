@@ -1,0 +1,10 @@
+body{
+    background: grey;
+}
+form {
+    max-width: 600px;
+    margin: 20px auto;
+}
+form img {
+    margin-left: 80px;
+}
