@@ -63,10 +63,10 @@ if (!(isset($_GET['urutkan']))) {
                         <a class="nav-link" href="front-end.html">Front End</a>
                     </li> -->
                     <li class="nav-item">
-                        <a class="nav-link " href="makanan_ringan?urutkan=terbaru">Makanan Ringan</a>
+                        <a class="nav-link " href="makanan_ringan.php">Makanan Ringan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link navbar-brand2" href="ui-ux.html">Makanan Berat</a>
+                        <a class="nav-link navbar-brand2" href="makanan_berat.php">Makanan Berat</a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="motivasi.html">Motivasi</a>

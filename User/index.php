@@ -59,10 +59,10 @@ if (!isset($_SESSION['user_login'])) {
                         <a class="nav-link" href="front-end.html">Front End</a>
                     </li> -->
                     <li class="nav-item">
-                        <a class="nav-link" href="makanan_ringan.php?urutkan=terbaru">Makanan Ringan</a>
+                        <a class="nav-link" href="makanan_ringan.php">Makanan Ringan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ui-ux.html">Makanan Berat</a>
+                        <a class="nav-link" href="makanan_berat.php">Makanan Berat</a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="motivasi.html">Motivasi</a>
@@ -201,7 +201,7 @@ if (!isset($_SESSION['user_login'])) {
             <div class="card bg-white text-white  col-lg-2 col-md-6 col-6">
                 <img src="img/html.webp" class="card-img" alt="...">
                 <div class="card-img-overlay">
-                    <h4 class="card-title text-center"><?= $food_category['name_category'] ?></h2>
+                    <h3 class="card-title text-center"><?= $food_category['name_category'] ?></h3>
                 </div>
             </div>
                 <?php } ?>

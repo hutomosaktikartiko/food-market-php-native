@@ -63,10 +63,10 @@ if (!(isset($_GET['urutkan']))) {
                         <a class="nav-link" href="front-end.html">Front End</a>
                     </li> -->
                     <li class="nav-item">
-                        <a class="nav-link navbar-brand2" href="makanan_ringan?urutkan=terbaru">Makanan Ringan</a>
+                        <a class="nav-link navbar-brand2" href="makanan_ringan.php">Makanan Ringan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ui-ux.html">Makanan Berat</a>
+                        <a class="nav-link" href="makanan_berat.php">Makanan Berat</a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="motivasi.html">Motivasi</a>
@@ -92,7 +92,7 @@ if (!(isset($_GET['urutkan']))) {
                     $database = new database();
 
                     if ($sort == "termurah") {
-                        $foods = $database->getSortPriceFood('ASC');
+                        $foods = $database->getFoodByCategory('Makanan Ringan', 'price', 'ASC');
                         echo '<button class="btn btn-secondary dropdown-toggle bg-light text-dark" href="makanan_ringan.php?urutkan=termurah" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Makanan Termurah
                     </button>
@@ -101,7 +101,7 @@ if (!(isset($_GET['urutkan']))) {
                         <a class="dropdown-item" href="makanan_ringan.php?urutkan=termahal">Makanan Termahal</a>
                     </div>';
                     } else if ($sort == "termahal") {
-                        $foods = $database->getSortPriceFood('DESC');
+                        $foods = $database->getFoodByCategory('Makanan Ringan', 'price', 'DESC');
                         echo '<button class="btn btn-secondary dropdown-toggle bg-light text-dark" href="makanan_ringan.php?urutkan=termahal" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Makanan Termahal
                             </button>
@@ -111,7 +111,7 @@ if (!(isset($_GET['urutkan']))) {
                                 <a class="dropdown-item" href="makanan_ringan.php?urutkan=termurah">Makanan Termurah</a>
                             </div>';
                     } else {
-                        $foods = $database->getAllNewsFood();
+                        $foods = $database->getFoodByCategory('Makanan Ringan', 'updated_at', 'DESC');
                         echo '<button class="btn btn-secondary dropdown-toggle bg-light text-dark" href="makanan_ringan.php?urutkan=terbaru" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Makanan Terbaru
                             </button>

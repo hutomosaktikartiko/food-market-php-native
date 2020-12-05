@@ -31,7 +31,7 @@ div.container div.web-developer .card:hover{
     border: none;
     filter: contrast(1000%);
 }
-div.web-developer div.card h4 {
+div.web-developer div.card h3 {
     color: white;
     line-height: 100px;
 }
