@@ -73,7 +73,7 @@ if(isset($_POST['login']))
                     <label class="form-check-label" for="remember-checkbox" value="remember-me" name="remember">Ingat saya</label>
                 </div>
                 <button class="btn btn-primary btn-lg btn-block mb-2" type="submit" name="login">Submit</button>
-                <a href="daftar.html" class="text-dark"><p>Belum punya akun ?</p></a>
+                <a href="register.php" class="text-dark"><p>Belum punya akun ?</p></a>
             </form>
         </div>
 

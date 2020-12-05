@@ -64,6 +64,12 @@ class Database
         return $query;
     }
 
+    function getNewFood()
+    {
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food, tb_food_category WHERE tb_food.category_id = tb_food_category.id_food_category order by updated_at DESC LIMIT 5");
+        return $query;
+    }
+
     function getFoodById($foodId)
     {
         $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food WHERE id_food = $foodId");

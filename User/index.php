@@ -28,7 +28,7 @@ if (!isset($_SESSION['user_login'])) {
     <div class="header bg-light">
         <div class="row align-items-center m-auto pt-3">
             <div class="judul col-md-3 col-sm-3 col-4 pl-5 pt-2">
-                <h4>TOM-EBOOK</h4>
+                <h4>FoodMarket</h4>
             </div>
             <div class="col-md-5 col-sm-5 col-7 my-1 px-0">
                 <form>
@@ -43,31 +43,30 @@ if (!isset($_SESSION['user_login'])) {
             <div class="col-md-4 col-sm-4 col-12 pr-5 pl-5">
                 <a href="keranjang.html" class="text-decoration-none text-secondary keranjang"><i class="mx-2 fas fa-shopping-cart"></i></a>
                 <i class="pembatas mx-3"></i>
-                <a href="login.html" class="awal btn btn-outline-primary">Login</a>
-                <a href="daftar.html" class="awal btn btn-primary daftar">Daftar</a>
+                <a href="account.html"><i class="text-decoration-none text-secondary mx-2 fas fa-user-circle"></i></a>
             </div>
         </div>
     </div>
     <nav class="navbarUtama navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div class="container">
-            <a class="navbar-brand navbar-brand2" href="home.html">Home</a>
+            <a class="navbar-brand navbar-brand2" href="index.php">Home</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="front-end.html">Front End</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="back-end.html">Makanan Ringan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="back-end.html">Back End</a>
+                        <a class="nav-link" href="ui-ux.html">Makanan Berat</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="ui-ux.html">Ui & Ux</a>
-                    </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="motivasi.html">Motivasi</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
@@ -82,19 +81,19 @@ if (!isset($_SESSION['user_login'])) {
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="img/gambarMudah.jpg" class="d-block w-100" alt="...">
+                        <img src="img/slider1.jpg" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h2>Baca dimanapun dan kapanpun</h2>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="img/gambarKomputasi.jpg" class="d-block w-100" alt="...">
+                        <img src="img/slider2.jpg" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h2>Simpan Koleksi Anda dikomputasi Awan</h2>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="img/gambarKoleksi.jpg" class="d-block w-100" alt="...">
+                        <img src="img/slider3.jpg" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h2>Akses koleksi anda kapanpun</h2>
                         </div>
@@ -112,80 +111,31 @@ if (!isset($_SESSION['user_login'])) {
         </div>
     </div>
     <div class="container mt-5">
-        <h4 class="text-primary">Promo Terbaru</h4>
+        <h4 class="text-primary">Makanan Terbaru</h4>
         <div class="card-columns row">
+            <?php
+
+            include_once('db_connect.php');
+            $database = new database();
+
+            $foods = $database->getNewFood();
+            $number = 1;
+
+            while($food = mysqli_fetch_assoc($foods)) {
+            ?>
             <div class="card col-lg-2 col-md-4 col-6">
                 <a href="info.html" class="text-decoration-none">
-                    <img src="img/vuejs.png" class="card-img-top" alt="...">
+                    <img src="../admin/assets/images/database/<?= $food['picture_path'] ?>" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Framework Dengan Kekuatan Super Vue Js</h5>
+                        <h5 class="card-title"><?= $food['name_food'] ?></h5>
                     </div>
                     <div class="card-footer text-center font-weight-bold">
-                        <small class="text-muted font-weight-bold d"><del>Rp 80.000</del></small>
-                        <p class="text-muted">Rp 100.000</p>
+                        <!-- <small class="text-muted font-weight-bold d"><del>Rp 80.000</del></small> -->
+                        <p class="text-muted">Rp <?= $food['price'] ?></p>
                     </div>
                 </a>
             </div>
-            <div class="card col-lg-2 col-md-4 col-6">
-                <a href="info.html" class="text-decoration-none">
-                    <img src="img/vuejs.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Framework Dengan Kekuatan Super Vue Js</h5>
-                    </div>
-                    <div class="card-footer text-center font-weight-bold">
-                        <small class="text-muted font-weight-bold d"><del>Rp 80.000</del></small>
-                        <p class="text-muted">Rp 100.000</p>
-                    </div>
-                </a>
-            </div>
-            <div class="card col-lg-2 col-md-4 col-6">
-                <a href="info.html" class="text-decoration-none">
-                    <img src="img/vuejs.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Framework Dengan Kekuatan Super Vue Js</h5>
-                    </div>
-                    <div class="card-footer text-center font-weight-bold">
-                        <small class="text-muted font-weight-bold d"><del>Rp 80.000</del></small>
-                        <p class="text-muted">Rp 100.000</p>
-                    </div>
-                </a>
-            </div>
-            <div class="card col-lg-2 col-md-4 col-6">
-                <a href="info.html" class="text-decoration-none">
-                    <img src="img/vuejs.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Framework Dengan Kekuatan Super Vue Js</h5>
-                    </div>
-                    <div class="card-footer text-center font-weight-bold">
-                        <small class="text-muted font-weight-bold d"><del>Rp 80.000</del></small>
-                        <p class="text-muted">Rp 100.000</p>
-                    </div>
-                </a>
-            </div>
-            <div class="card col-lg-2 col-md-4 col-6">
-                <a href="info.html" class="text-decoration-none">
-                    <img src="img/vuejs.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Framework Dengan Kekuatan Super Vue Js</h5>
-                    </div>
-                    <div class="card-footer text-center font-weight-bold">
-                        <small class="text-muted font-weight-bold d"><del>Rp 80.000</del></small>
-                        <p class="text-muted">Rp 100.000</p>
-                    </div>
-                </a>
-            </div>
-            <div class="card col-lg-2 col-md-4 col-6">
-                <a href="info.html" class="text-decoration-none">
-                    <img src="img/vuejs.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Framework Dengan Kekuatan Super Vue Js</h5>
-                    </div>
-                    <div class="card-footer text-center font-weight-bold">
-                        <small class="text-muted font-weight-bold d"><del>Rp 80.000</del></small>
-                        <p class="text-muted">Rp 100.000</p>
-                    </div>
-                </a>
-            </div>
+            <?php } ?>
         </div>
     </div>
     <div class="container mt-5">
