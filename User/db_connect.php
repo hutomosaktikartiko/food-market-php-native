@@ -70,6 +70,12 @@ class Database
         return $query;
     }
 
+    function getDiscountFood()
+    {
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food, tb_food_category WHERE tb_food.category_id = tb_food_category.id_food_category AND discount IS NOT NULL LIMIT 5");
+        return $query;
+    }
+
     function getFoodById($foodId)
     {
         $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food WHERE id_food = $foodId");

@@ -193,7 +193,7 @@ class Database
         if (!$image) {
             return false;
         }
-        $query = mysqli_query($this->koneksi, "INSERT INTO tb_food VALUES ('', '$categoryId', '$name', '$description', '$price', '$total', '$image')");
+        $query = mysqli_query($this->koneksi, "INSERT INTO tb_food VALUES ('', '$categoryId', '$name', '$description', '$price', '', '$total', '$image')");
         return $query;
     }
 

@@ -111,27 +111,28 @@ if (!isset($_SESSION['user_login'])) {
         </div>
     </div>
     <div class="container mt-5">
-        <h4 class="text-primary">Makanan Terbaru</h4>
+        <h4 class="text-primary">Discount Hari Ini</h4>
         <div class="card-columns row">
             <?php
 
             include_once('db_connect.php');
             $database = new database();
 
-            $foods = $database->getNewFood();
+            $foods_discount = $database->getDiscountFood();
             $number = 1;
 
-            while($food = mysqli_fetch_assoc($foods)) {
+            while($food_discount = mysqli_fetch_assoc($foods_discount)) {
+                $discount = ($food_discount['discount'] / 100) * $food_discount['price'];
             ?>
             <div class="card col-lg-2 col-md-4 col-6">
                 <a href="info.html" class="text-decoration-none">
-                    <img src="../admin/assets/images/database/<?= $food['picture_path'] ?>" class="card-img-top" alt="...">
+                    <img src="../admin/assets/images/database/<?= $food_discount['picture_path'] ?>" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title"><?= $food['name_food'] ?></h5>
+                        <h5 class="card-title"><?= $food_discount['name_food'] ?></h5>
                     </div>
                     <div class="card-footer text-center font-weight-bold">
-                        <!-- <small class="text-muted font-weight-bold d"><del>Rp 80.000</del></small> -->
-                        <p class="text-muted">Rp <?= $food['price'] ?></p>
+                        <small class="text-muted font-weight-bold d"><del>Rp <?= $food_discount['price'] ?></del></small>
+                        <p class="text-muted">Rp <?= $discount ?></p>
                     </div>
                 </a>
             </div>
@@ -162,74 +163,31 @@ if (!isset($_SESSION['user_login'])) {
         </div>
     </div>
     <div class="container mt-5">
-        <h4 class="text-primary">Motivasi</h4>
+    <h4 class="text-primary">Makanan Terbaru</h4>
         <div class="card-columns row">
+            <?php
+
+            include_once('db_connect.php');
+            $database = new database();
+
+            $foods = $database->getNewFood();
+            $number = 1;
+
+            while($food = mysqli_fetch_assoc($foods)) {
+            ?>
             <div class="card col-lg-2 col-md-4 col-6">
                 <a href="info.html" class="text-decoration-none">
-                    <img src="img/motivasi.png" class="card-img-top" alt="...">
+                    <img src="../admin/assets/images/database/<?= $food['picture_path'] ?>" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Dikala Anda Stuck</h5>
+                        <h5 class="card-title"><?= $food['name_food'] ?></h5>
                     </div>
                     <div class="card-footer text-center font-weight-bold">
-                        <p class="text-muted">Rp 100.000</p>
+                        <!-- <small class="text-muted font-weight-bold d"><del>Rp 80.000</del></small> -->
+                        <p class="text-muted">Rp <?= $food['price'] ?></p>
                     </div>
                 </a>
             </div>
-            <div class="card col-lg-2 col-md-4 col-6">
-                <a href="info.html" class="text-decoration-none">
-                    <img src="img/motivasi.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Dikala Anda Stuck</h5>
-                    </div>
-                    <div class="card-footer text-center font-weight-bold">
-                        <p class="text-muted">Rp 100.000</p>
-                    </div>
-                </a>
-            </div>
-            <div class="card col-lg-2 col-md-4 col-6">
-                <a href="info.html" class="text-decoration-none">
-                    <img src="img/motivasi.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Dikala Anda Stuck</h5>
-                    </div>
-                    <div class="card-footer text-center font-weight-bold">
-                        <p class="text-muted">Rp 100.000</p>
-                    </div>
-                </a>
-            </div>
-            <div class="card col-lg-2 col-md-4 col-6">
-                <a href="info.html" class="text-decoration-none">
-                    <img src="img/motivasi.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Dikala Anda Stuck</h5>
-                    </div>
-                    <div class="card-footer text-center font-weight-bold">
-                        <p class="text-muted">Rp 100.000</p>
-                    </div>
-                </a>
-            </div>
-            <div class="card col-lg-2 col-md-4 col-6">
-                <a href="info.html" class="text-decoration-none">
-                    <img src="img/motivasi.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Dikala Anda Stuck</h5>
-                    </div>
-                    <div class="card-footer text-center font-weight-bold">
-                        <p class="text-muted">Rp 100.000</p>
-                    </div>
-                </a>
-            </div>
-            <div class="card col-lg-2 col-md-4 col-6">
-                <a href="info.html" class="text-decoration-none">
-                    <img src="img/motivasi.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Dikala Anda Stuck</h5>
-                    </div>
-                    <div class="card-footer text-center font-weight-bold">
-                        <p class="text-muted">Rp 100.000</p>
-                    </div>
-                </a>
-            </div>
+            <?php } ?>
         </div>
     </div>
     <div class="container mt-5">
