@@ -64,9 +64,21 @@ class Database
         return $query;
     }
 
-    function getNewFood()
+    function getNewFood($limit)
     {
-        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food, tb_food_category WHERE tb_food.category_id = tb_food_category.id_food_category order by updated_at DESC LIMIT 5");
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food, tb_food_category WHERE tb_food.category_id = tb_food_category.id_food_category order by updated_at DESC LIMIT $limit");
+        return $query;
+    }
+
+    function getAllNewsFood()
+    {
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food, tb_food_category WHERE tb_food.category_id = tb_food_category.id_food_category order by updated_at DESC");
+        return $query;
+    }
+
+    function getSortPriceFood($sort)
+    {
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food, tb_food_category WHERE tb_food.category_id = tb_food_category.id_food_category order by price $sort");
         return $query;
     }
 

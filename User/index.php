@@ -43,7 +43,7 @@ if (!isset($_SESSION['user_login'])) {
             <div class="col-md-4 col-sm-4 col-12 pr-5 pl-5">
                 <a href="keranjang.html" class="text-decoration-none text-secondary keranjang"><i class="mx-2 fas fa-shopping-cart"></i></a>
                 <i class="pembatas mx-3"></i>
-                <a href="account.html"><i class="text-decoration-none text-secondary mx-2 fas fa-user-circle"></i></a>
+                <a href="account.php"><i class="text-decoration-none text-secondary mx-2 fas fa-user-circle"></i></a>
             </div>
         </div>
     </div>
@@ -59,7 +59,7 @@ if (!isset($_SESSION['user_login'])) {
                         <a class="nav-link" href="front-end.html">Front End</a>
                     </li> -->
                     <li class="nav-item">
-                        <a class="nav-link" href="back-end.html">Makanan Ringan</a>
+                        <a class="nav-link" href="makanan_ringan.php?urutkan=terbaru">Makanan Ringan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="ui-ux.html">Makanan Berat</a>
@@ -170,7 +170,7 @@ if (!isset($_SESSION['user_login'])) {
             include_once('db_connect.php');
             $database = new database();
 
-            $foods = $database->getNewFood();
+            $foods = $database->getNewFood(5);
             $number = 1;
 
             while($food = mysqli_fetch_assoc($foods)) {
