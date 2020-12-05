@@ -70,10 +70,20 @@ class Database
         return $query;
     }
 
+    //get food By category
     function getAllNewsFood()
     {
         $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food, tb_food_category WHERE tb_food.category_id = tb_food_category.id_food_category order by updated_at DESC");
         return $query;
+    }
+
+    //get Food By Category and sort by asc/desc
+    function getFoodByCategory($category, $order, $sort)
+    {
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food, tb_food_category WHERE tb_food.category_id = tb_food_category.id_food_category AND tb_food_category.name_category = '$category' order by $order $sort");
+        
+        return $query;
+        
     }
 
     function getSortPriceFood($sort)
