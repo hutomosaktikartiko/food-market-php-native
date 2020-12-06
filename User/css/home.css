@@ -31,10 +31,6 @@ div.container div.web-developer .card:hover{
     border: none;
     filter: contrast(1000%);
 }
-div.web-developer div.card h3 {
-    color: white;
-    line-height: 100px;
-}
 a.nav-link:hover, a.navbar-brand2:hover{
     border-bottom: 2px solid #2E90FF;
     padding-bottom: 2px;

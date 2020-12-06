@@ -121,21 +121,21 @@ if (!isset($_SESSION['user_login'])) {
             $foods_discount = $database->getDiscountFood();
             $number = 1;
 
-            while($food_discount = mysqli_fetch_assoc($foods_discount)) {
+            while ($food_discount = mysqli_fetch_assoc($foods_discount)) {
                 $discount = ($food_discount['discount'] / 100) * $food_discount['price'];
             ?>
-            <div class="card col-lg-2 col-md-4 col-6">
-                <a href="info.html" class="text-decoration-none">
-                    <img src="../admin/assets/images/database/<?= $food_discount['picture_path'] ?>" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title"><?= $food_discount['name_food'] ?></h5>
-                    </div>
-                    <div class="card-footer text-center font-weight-bold">
-                        <small class="text-muted font-weight-bold d"><del>Rp <?= $food_discount['price'] ?></del></small>
-                        <p class="text-muted">Rp <?= $discount ?></p>
-                    </div>
-                </a>
-            </div>
+                <div class="card col-lg-2 col-md-4 col-6">
+                    <a href="info.html" class="text-decoration-none">
+                        <img src="../admin/assets/images/database/<?= $food_discount['picture_path'] ?>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $food_discount['name_food'] ?></h5>
+                        </div>
+                        <div class="card-footer text-center font-weight-bold">
+                            <small class="text-muted font-weight-bold d"><del>Rp <?= $food_discount['price'] ?></del></small>
+                            <p class="text-muted">Rp <?= $discount ?></p>
+                        </div>
+                    </a>
+                </div>
             <?php } ?>
         </div>
     </div>
@@ -163,7 +163,7 @@ if (!isset($_SESSION['user_login'])) {
         </div>
     </div>
     <div class="container mt-5">
-    <h4 class="text-primary">Makanan Terbaru</h4>
+        <h4 class="text-primary">Makanan Terbaru</h4>
         <div class="card-columns row">
             <?php
 
@@ -173,20 +173,20 @@ if (!isset($_SESSION['user_login'])) {
             $foods = $database->getNewFood(5);
             $number = 1;
 
-            while($food = mysqli_fetch_assoc($foods)) {
+            while ($food = mysqli_fetch_assoc($foods)) {
             ?>
-            <div class="card col-lg-2 col-md-4 col-6">
-                <a href="info.html" class="text-decoration-none">
-                    <img src="../admin/assets/images/database/<?= $food['picture_path'] ?>" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title"><?= $food['name_food'] ?></h5>
-                    </div>
-                    <div class="card-footer text-center font-weight-bold">
-                        <!-- <small class="text-muted font-weight-bold d"><del>Rp 80.000</del></small> -->
-                        <p class="text-muted">Rp <?= $food['price'] ?></p>
-                    </div>
-                </a>
-            </div>
+                <div class="card col-lg-2 col-md-4 col-6">
+                    <a href="info.html" class="text-decoration-none">
+                        <img src="../admin/assets/images/database/<?= $food['picture_path'] ?>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $food['name_food'] ?></h5>
+                        </div>
+                        <div class="card-footer text-center font-weight-bold">
+                            <!-- <small class="text-muted font-weight-bold d"><del>Rp 80.000</del></small> -->
+                            <p class="text-muted">Rp <?= $food['price'] ?></p>
+                        </div>
+                    </a>
+                </div>
             <?php } ?>
         </div>
     </div>
@@ -194,18 +194,18 @@ if (!isset($_SESSION['user_login'])) {
         <h4 class="text-primary">Kategori Makanan</h4>
         <div class="card-columns web-developer row justify-content-md-center mt-2">
             <?php
-                $foods_category = $database->getFoodCategory();
-                
-                while($food_category = mysqli_fetch_assoc($foods_category)) {
+            $foods_category = $database->getFoodCategory();
+
+            while ($food_category = mysqli_fetch_assoc($foods_category)) {
             ?>
-            <div class="card bg-white text-white  col-lg-2 col-md-6 col-6">
-                <img src="img/html.webp" class="card-img" alt="...">
-                <div class="card-img-overlay">
-                    <h3 class="card-title text-center"><?= $food_category['name_category'] ?></h3>
+                <div class="card text-center text-white" style="width: 15rem;">
+                    <img class="card-img" src="img/html.webp" alt="Card image cap">
+                    <div class="card-img-overlay">
+                        <h2 class="card-text"><?= $food_category['name_category'] ?></h2>
+                    </div>
                 </div>
-            </div>
-                <?php } ?>
-            
+            <?php } ?>
+
         </div>
     </div>
     <div class="container mt-5">
