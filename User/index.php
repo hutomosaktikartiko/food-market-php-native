@@ -176,7 +176,7 @@ if (!isset($_SESSION['user_login'])) {
             while ($food = mysqli_fetch_assoc($foods)) {
             ?>
                 <div class="card col-lg-2 col-md-4 col-6">
-                    <a href="food_detail.php" class="text-decoration-none">
+                    <a href="food_detail.php?food-id=<?= $food['id_food'] ?>" class="text-decoration-none">
                         <img src="../admin/assets/images/database/<?= $food['picture_path'] ?>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><?= $food['name_food'] ?></h5>
@@ -198,12 +198,14 @@ if (!isset($_SESSION['user_login'])) {
 
             while ($food_category = mysqli_fetch_assoc($foods_category)) {
             ?>
+                <a href="search_category.php?category=<?= $food_category['name_category'] ?>">
                 <div class="card text-center text-white" style="width: 15rem;">
                     <img class="card-img" src="img/html.webp" alt="Card image cap">
                     <div class="card-img-overlay">
                         <h2 class="card-text"><?= $food_category['name_category'] ?></h2>
                     </div>
                 </div>
+                </a>
             <?php } ?>
 
         </div>
