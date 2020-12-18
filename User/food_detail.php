@@ -49,11 +49,11 @@ if(isset($_POST['submit-add-cart'])) {
                 <h4>FoodMarket</h4>
             </div>
             <div class="col-md-5 col-sm-5 col-7 my-1 px-0">
-                <form>
+                <form method="get" action="search.php">
                     <div class="input-group">
-                        <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Makanan Cepat Saji...">
+                        <input type="text" name="search" class="form-control" id="inlineFormInputGroupUsername" placeholder="Makanan Cepat Saji...">
                         <div class="input-group-prepend">
-                            <a href="search.php" class="input-group-text text-decoration-none"><i class="fas fa-search"></i></a>
+                            <a type="submit" class="input-group-text text-decoration-none"><i class="fas fa-search"></i></a>
                         </div>
                     </div>
                 </form>

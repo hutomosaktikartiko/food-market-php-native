@@ -145,7 +145,11 @@ class Database
         return $query;
     }
 
-    
+    function getFoodByName($name)
+    {
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food WHERE name_food LIKE '%$name%'");
+        return $query;
+    }
     
     function addCart($userId, $foodId, $total)
     {
