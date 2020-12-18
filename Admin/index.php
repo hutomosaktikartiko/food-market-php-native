@@ -31,7 +31,7 @@ $database = new database();
 
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-    <title>Admin - Food Market</title>
+    <title>FoodMarket - Admin Dashboard</title>
 
     <!-- App css -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -94,7 +94,6 @@ $database = new database();
         </div>
         <!-- Top Bar End -->
 
-
         <!-- ========== Left Sidebar Start ========== -->
         <div class="left side-menu">
             <div class="sidebar-inner slimscrollleft">
@@ -146,8 +145,6 @@ $database = new database();
 
         </div>
         <!-- Left Sidebar End -->
-
-
 
         <!-- ============================================================== -->
         <!-- Start right Content here -->

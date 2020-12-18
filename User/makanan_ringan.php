@@ -39,13 +39,13 @@ if (!(isset($_GET['urutkan']))) {
                     <div class="input-group">
                         <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Makanan Cepat Saji...">
                         <div class="input-group-prepend">
-                            <a href="pencarian.html" class="input-group-text text-decoration-none"><i class="fas fa-search"></i></a>
+                            <a href="search.php" class="input-group-text text-decoration-none"><i class="fas fa-search"></i></a>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="col-md-4 col-sm-4 col-12 pr-5 pl-5">
-                <a href="keranjang.html" class="text-decoration-none text-secondary keranjang"><i class="mx-2 fas fa-shopping-cart"></i></a>
+                <a href="cart.php" class="text-decoration-none text-secondary keranjang"><i class="mx-2 fas fa-shopping-cart"></i></a>
                 <i class="pembatas mx-3"></i>
                 <a href="account.php"><i class="text-decoration-none text-secondary mx-2 fas fa-user-circle"></i></a>
             </div>
@@ -135,7 +135,7 @@ if (!(isset($_GET['urutkan']))) {
                     while ($food = mysqli_fetch_assoc($foods)) {
                     ?>
                         <div class="card col-lg-3 col-md-4 col-6">
-                            <a href="info.html" class="text-decoration-none">
+                            <a href="food_detail.php" class="text-decoration-none">
                                 <img src="../admin/assets/images/database/<?= $food['picture_path'] ?>" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $food['name_food'] ?></h5>

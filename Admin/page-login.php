@@ -44,7 +44,7 @@ if(isset($_POST['login']))
 
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-        <title>Adminto - Responsive Admin Dashboard Template</title>
+        <title>FoodMarket - Admin Login</title>
 
         <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -61,8 +61,8 @@ if(isset($_POST['login']))
         <div class="clearfix"></div>
         <div class="wrapper-page">
             <div class="text-center">
-                <a href="index.php" class="logo"><span>Admin<span>to</span></span></a>
-                <h5 class="text-muted m-t-0 font-600">Responsive Admin Dashboard</h5>
+                <a href="index.php" class="logo"><span>Food<span>Market</span></span></a>
+                <h5 class="text-muted m-t-0 font-600">Admin Dashboard</h5>
             </div>
         	<div class="m-t-40 card-box">
                 <div class="text-center">
@@ -111,13 +111,6 @@ if(isset($_POST['login']))
 
                 </div>
             </div>
-            <!-- end card-box-->
-<!-- 
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <p class="text-muted">Don't have an account? <a href="page-register.html" class="text-primary m-l-5"><b>Sign Up</b></a></p>
-                </div>
-            </div> -->
             
         </div>
         <!-- end wrapper page -->

@@ -20,46 +20,45 @@
     <div class="header bg-light">
         <div class="row align-items-center m-auto pt-3">
             <div class="judul col-md-3 col-sm-3 col-4 pl-5 pt-2">
-                <h4>TOM-EBOOK</h4>
+                <h4>FoodMarket</h4>
             </div>
             <div class="col-md-5 col-sm-5 col-7 my-1 px-0">
                 <form>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Apa yang sedang anda cari ?">
+                        <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Makanan Cepat Saji...">
                         <div class="input-group-prepend">
-                            <a href="pencarian.html" class="input-group-text text-decoration-none"><i class="fas fa-search"></i></a>
+                            <a href="search.php" class="input-group-text text-decoration-none"><i class="fas fa-search"></i></a>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="col-md-4 col-sm-4 col-12 pr-5 pl-5">
-                <a href="keranjang.html" class="text-decoration-none text-secondary keranjang"><i class="mx-2 fas fa-shopping-cart"></i></a>
+                <a href="cart.php" class="text-decoration-none text-secondary keranjang"><i class="mx-2 fas fa-shopping-cart"></i></a>
                 <i class="pembatas mx-3"></i>
-                <a href="login.html" class="awal btn btn-outline-primary">Login</a>
-                <a href="daftar.html" class="awal btn btn-primary daftar">Daftar</a>
+                <a href="account.php"><i class="text-decoration-none text-secondary mx-2 fas fa-user-circle"></i></a>
             </div>
         </div>
     </div>
     <nav class="navbarUtama navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="home.html">Home</a>
+            <a class="navbar-brand navbar-brand2" href="index.php">Home</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>  
+            </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="front-end.html">Front End</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="makanan_ringan.php">Makanan Ringan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="back-end.html">Back End</a>
+                        <a class="nav-link" href="makanan_berat.php">Makanan Berat</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="ui-ux.html">Ui & Ux</a>
-                    </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="motivasi.html">Motivasi</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
@@ -79,7 +78,7 @@
             <div class="col-lg-9 col-md-9 col-12">
                 <div class="card-columns row">
                     <div class="card col-lg-3 col-md-4 col-6">
-                        <a href="info.html" class="text-decoration-none">
+                        <a href="food_detail.php" class="text-decoration-none">
                             <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">JavaScript Uncover</h5>
@@ -90,7 +89,7 @@
                         </a>
                     </div>
                     <div class="card col-lg-3 col-md-4 col-6">
-                        <a href="info.html" class="text-decoration-none">
+                        <a href="food_detail.php" class="text-decoration-none">
                             <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">JavaScript Uncover</h5>
@@ -101,7 +100,7 @@
                         </a>
                     </div>
                     <div class="card col-lg-3 col-md-4 col-6">
-                        <a href="info.html" class="text-decoration-none">
+                        <a href="food_detail.php" class="text-decoration-none">
                             <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">JavaScript Uncover</h5>
@@ -112,53 +111,7 @@
                         </a>
                     </div>
                     <div class="card col-lg-3 col-md-4 col-6">
-                        <a href="info.html" class="text-decoration-none">
-                            <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">JavaScript Uncover</h5>
-                            </div>
-                            <div class="card-footer text-center font-weight-bold">
-                                <p class="text-muted">Rp 100.000</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-columns row">
-                    <div class="card col-lg-3 col-md-4 col-6">
-                        <a href="info.html" class="text-decoration-none">
-                            <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">JavaScript Uncover</h5>
-                            </div>
-                            <div class="card-footer text-center font-weight-bold">
-                                <p class="text-muted">Rp 100.000</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card col-lg-3 col-md-4 col-6">
-                        <a href="info.html" class="text-decoration-none">
-                            <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">JavaScript Uncover</h5>
-                            </div>
-                            <div class="card-footer text-center font-weight-bold">
-                                <p class="text-muted">Rp 100.000</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card col-lg-3 col-md-4 col-6">
-                        <a href="info.html" class="text-decoration-none">
-                            <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">JavaScript Uncover</h5>
-                            </div>
-                            <div class="card-footer text-center font-weight-bold">
-                                <p class="text-muted">Rp 100.000</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card col-lg-3 col-md-4 col-6">
-                        <a href="info.html" class="text-decoration-none">
+                        <a href="food_detail.php" class="text-decoration-none">
                             <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">JavaScript Uncover</h5>
@@ -171,7 +124,7 @@
                 </div>
                 <div class="card-columns row">
                     <div class="card col-lg-3 col-md-4 col-6">
-                        <a href="info.html" class="text-decoration-none">
+                        <a href="food_detail.php" class="text-decoration-none">
                             <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">JavaScript Uncover</h5>
@@ -182,7 +135,7 @@
                         </a>
                     </div>
                     <div class="card col-lg-3 col-md-4 col-6">
-                        <a href="info.html" class="text-decoration-none">
+                        <a href="food_detail.php" class="text-decoration-none">
                             <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">JavaScript Uncover</h5>
@@ -193,7 +146,7 @@
                         </a>
                     </div>
                     <div class="card col-lg-3 col-md-4 col-6">
-                        <a href="info.html" class="text-decoration-none">
+                        <a href="food_detail.php" class="text-decoration-none">
                             <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">JavaScript Uncover</h5>
@@ -204,7 +157,7 @@
                         </a>
                     </div>
                     <div class="card col-lg-3 col-md-4 col-6">
-                        <a href="info.html" class="text-decoration-none">
+                        <a href="food_detail.php" class="text-decoration-none">
                             <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">JavaScript Uncover</h5>
@@ -217,7 +170,7 @@
                 </div>
                 <div class="card-columns row">
                     <div class="card col-lg-3 col-md-4 col-6">
-                        <a href="info.html" class="text-decoration-none">
+                        <a href="food_detail.php" class="text-decoration-none">
                             <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">JavaScript Uncover</h5>
@@ -228,7 +181,7 @@
                         </a>
                     </div>
                     <div class="card col-lg-3 col-md-4 col-6">
-                        <a href="info.html" class="text-decoration-none">
+                        <a href="food_detail.php" class="text-decoration-none">
                             <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">JavaScript Uncover</h5>
@@ -239,7 +192,7 @@
                         </a>
                     </div>
                     <div class="card col-lg-3 col-md-4 col-6">
-                        <a href="info.html" class="text-decoration-none">
+                        <a href="food_detail.php" class="text-decoration-none">
                             <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">JavaScript Uncover</h5>
@@ -250,7 +203,53 @@
                         </a>
                     </div>
                     <div class="card col-lg-3 col-md-4 col-6">
-                        <a href="info.html" class="text-decoration-none">
+                        <a href="food_detail.php" class="text-decoration-none">
+                            <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">JavaScript Uncover</h5>
+                            </div>
+                            <div class="card-footer text-center font-weight-bold">
+                                <p class="text-muted">Rp 100.000</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-columns row">
+                    <div class="card col-lg-3 col-md-4 col-6">
+                        <a href="food_detail.php" class="text-decoration-none">
+                            <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">JavaScript Uncover</h5>
+                            </div>
+                            <div class="card-footer text-center font-weight-bold">
+                                <p class="text-muted">Rp 100.000</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card col-lg-3 col-md-4 col-6">
+                        <a href="food_detail.php" class="text-decoration-none">
+                            <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">JavaScript Uncover</h5>
+                            </div>
+                            <div class="card-footer text-center font-weight-bold">
+                                <p class="text-muted">Rp 100.000</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card col-lg-3 col-md-4 col-6">
+                        <a href="food_detail.php" class="text-decoration-none">
+                            <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">JavaScript Uncover</h5>
+                            </div>
+                            <div class="card-footer text-center font-weight-bold">
+                                <p class="text-muted">Rp 100.000</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card col-lg-3 col-md-4 col-6">
+                        <a href="food_detail.php" class="text-decoration-none">
                             <img src="img/bukuJavascript.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">JavaScript Uncover</h5>

@@ -27,7 +27,7 @@ if (isset($_POST['registeruser'])) {
 
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-    <title>Adminto - Responsive Admin Dashboard Template</title>
+    <title>FoodMarket - Admin Register</title>
 
     <!-- App css -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -44,8 +44,8 @@ if (isset($_POST['registeruser'])) {
     <div class="clearfix"></div>
     <div class="wrapper-page">
         <div class="text-center">
-            <a href="index.php" class="logo"><span>Admin<span>to</span></span></a>
-            <h5 class="text-muted m-t-0 font-600">Responsive Admin Dashboard</h5>
+            <a href="index.php" class="logo"><span>Food<span>Market</span></span></a>
+            <h5 class="text-muted m-t-0 font-600">Admin Dashboard</h5>
         </div>
         <div class="m-t-40 card-box">
             <div class="text-center">
@@ -95,15 +95,6 @@ if (isset($_POST['registeruser'])) {
                         </div>
                     </div>
 
-                    <!-- <div class="form-group">
-							<div class="col-xs-12">
-								<div class="checkbox checkbox-custom">
-									<input id="checkbox-signup" type="checkbox" checked="checked">
-									<label for="checkbox-signup">I accept <a href="#">Terms and Conditions</a></label>
-								</div>
-							</div>
-						</div> -->
-
                     <div class="form-group text-center m-t-40">
                         <div class="col-xs-12">
                             <button class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="submit" name="registeruser">
@@ -118,26 +109,13 @@ if (isset($_POST['registeruser'])) {
                             <p class="text-muted">Already have account?<a href="page-login.php" class="text-primary m-l-5"><b>Sign In</b></a></p>
                         </div>
                     </div>
-
-
-
                 </form>
 
             </div>
         </div>
         <!-- end card-box -->
-
-        <!-- <div class="row">
-				<div class="col-sm-12 text-center">
-					<p class="text-muted">Already have account?<a href="page-login.html" class="text-primary m-l-5"><b>Sign In</b></a></p>
-				</div>
-			</div> -->
-
     </div>
     <!-- end wrapper page -->
-
-
-
 
     <!-- jQuery  -->
     <script src="assets/js/jquery.min.js"></script>
