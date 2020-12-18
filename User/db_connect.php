@@ -43,6 +43,7 @@ class Database
             $_SESSION['name'] = $data_user['name'];
             $_SESSION['image'] = $data_user['picture_path'];
             $_SESSION['user_login'] = TRUE;
+            $_SESSION['user-id'] = $data_user['id'];
             
             return TRUE;
         }
@@ -100,7 +101,7 @@ class Database
 
     function getFoodById($foodId)
     {
-        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food WHERE id_food = $foodId");
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_food , tb_food_category WHERE tb_food.category_id = tb_food_category.id_food_category AND id_food = $foodId");
         return $query;
     }
 
@@ -156,9 +157,9 @@ class Database
         return $query;
     }
 
-    function updateCategory($categoryId, $category)
+    function addCart($userId, $foodId, $total)
     {
-        $query = mysqli_query($this->koneksi, "UPDATE tb_food_category SET name_category = '$category' WHERE id_food_category = $categoryId");
+        $query = mysqli_query($this->koneksi, "INSERT INTO tb_cart VALUES ('', '$userId', '$foodId', '$total')");
         return $query;
     }
 

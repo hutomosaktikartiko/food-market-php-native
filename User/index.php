@@ -125,7 +125,7 @@ if (!isset($_SESSION['user_login'])) {
                 $discount = ($food_discount['discount'] / 100) * $food_discount['price'];
             ?>
                 <div class="card col-lg-2 col-md-4 col-6">
-                    <a href="food_detail.php" class="text-decoration-none">
+                    <a href="food_detail.php?food-id=<?= $food_discount['id_food'] ?>" class="text-decoration-none">
                         <img src="../admin/assets/images/database/<?= $food_discount['picture_path'] ?>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><?= $food_discount['name_food'] ?></h5>
