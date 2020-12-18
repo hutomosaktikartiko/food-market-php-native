@@ -16,8 +16,8 @@ if(isset($_POST['submit-add-cart'])) {
     $userId = $_SESSION['user-id'];
     $foodId = $food['id_food'];
     $total = $_POST['total-cart'];
-
-    $result = $database->addCart($userId, $foodId, $total);
+    $price = $food['price'] * $total;
+    $result = $database->addCart($userId, $foodId, $total, $price);
 }
 
 ?>

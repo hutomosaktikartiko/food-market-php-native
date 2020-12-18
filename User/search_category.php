@@ -122,7 +122,7 @@ if ($result_length < 1) {
                         
                     ?>
                         <div class="card col-lg-3 col-md-4 col-6">
-                            <a href="food_detail.php" class="text-decoration-none">
+                            <a href="food_detail.php?food-id=<?= $food['id_food'] ?>" class="text-decoration-none">
                                 <img src="../admin/assets/images/database/<?= $food['picture_path'] ?>" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $food['name_food'] ?></h5>

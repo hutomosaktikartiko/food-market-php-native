@@ -151,9 +151,9 @@ class Database
         return $query;
     }
     
-    function addCart($userId, $foodId, $total)
+    function addCart($userId, $foodId, $total, $price)
     {
-        $query = mysqli_query($this->koneksi, "INSERT INTO tb_cart VALUES ('', '$userId', '$foodId', '$total')");
+        $query = mysqli_query($this->koneksi, "INSERT INTO tb_cart VALUES ('', '$userId', '$foodId', '$total', '$price')");
         return $query;
     }
 
