@@ -1,5 +1,22 @@
+<?php
+
+session_start();
+if (!($_SESSION['user_login'])) {
+    header('location:login.php');
+}
+
+include_once('db_connect.php');
+$database = new database();
+
+$carts = $database->getCart($_SESSION['user-id']);
+
+$total_price = 0;
+
+?>
+
 <!doctype html>
 <html lang="en">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -16,6 +33,7 @@
 
     <title>Keranjang Saya</title>
 </head>
+
 <body>
     <div class="header bg-light">
         <div class="row align-items-center m-auto pt-3">
@@ -41,7 +59,7 @@
     </div>
     <nav class="navbarUtama navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div class="container">
-            <a class="navbar-brand navbar-brand2" href="index.php">Home</a>
+            <a class="navbar-brand " href="index.php">Home</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -65,20 +83,27 @@
     </nav>
     <div class="container my-5">
         <h4>Keranjang Saya</h4>
+
         <div class="row">
+
             <div class="col-lg-7 col-md-12 col-11 ml-4 my-3">
-                <div class="kotak border-top border-bottom">
-                    <form>
-                        <div class="form-group form-check my-3">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">
-                                <img src="img/ebook3.jpg" alt="" srcset="" width="10%">
-                                Framework Dengan Kekuatan Super VUE JS
-                            </label>
-                        </div>
-                    </form>
-                </div>
+                <?php
+
+                while ($cart = mysqli_fetch_assoc($carts)) {
+                    $total_price += $cart['total_price'];
+                ?>
+                    <div class="kotak border-top border-bottom my-3">
+                        <img src="../admin/assets/images/database/<?= $cart['picture_path'] ?>" alt="" srcset="" width="10%">
+                        <?= $cart['name_food'] ?>
+                        <h5 class="text-right">
+                            Total : <?= $cart['total_cart'] ?>
+                        </h5>
+
+                    </div>
+
+                <?php } ?>
             </div>
+
             <div class="col-lg-4 col-md-12 col-11 ml-4 shadow rounded">
                 <div class="p-2">
                     <h5>Ringkasan Belanja</h5>
@@ -86,9 +111,9 @@
                     <div class="row">
                         <div class="col-4">Total Belanja</div>
                         <div class="col-4"></div>
-                        <div class="col-4"><b>Rp 100.000</b></div>
+                        <div class="col-4"><b>Rp <?= $total_price ?></b></div>
                     </div>
-                    <button type="button" class="btn btn-primary btn-block mt-2"><b>Beli</b></button>
+                    <button type="button" class="btn btn-primary btn-block mt-2"><b>Checkout</b></button>
                 </div>
             </div>
         </div>
@@ -127,4 +152,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
+
 </html>

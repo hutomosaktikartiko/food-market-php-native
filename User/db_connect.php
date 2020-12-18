@@ -145,21 +145,17 @@ class Database
         return $query;
     }
 
-    function deleteCategory($categoryId)
-    {
-        $query = mysqli_query($this->koneksi, "DELETE FROM tb_food_category WHERE id_food_category=$categoryId");
-        return $query;
-    }
-
-    function addCategory($category)
-    {
-        $query = mysqli_query($this->koneksi, "INSERT INTO tb_food_category (id_food_category, name_category) VALUES ('', '$category')");
-        return $query;
-    }
-
+    
+    
     function addCart($userId, $foodId, $total)
     {
         $query = mysqli_query($this->koneksi, "INSERT INTO tb_cart VALUES ('', '$userId', '$foodId', '$total')");
+        return $query;
+    }
+
+    function getCart($userId)
+    {
+        $query = mysqli_query($this->koneksi, "SELECT * FROM tb_cart, tb_food WHERE id_user = $userId AND tb_cart.id_food = tb_food.id_food");
         return $query;
     }
 
